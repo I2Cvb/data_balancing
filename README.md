@@ -9,6 +9,37 @@ Because *Human* is **perfectible** and **error-prone**, because *Science* should
 
 This study targets ACPR2015 to be scientifically disseminated
 
+## Datasets
+
+### Some thoughts:
+
+- [List of highly imbalanced data sets](http://www.cs.gsu.edu/~zding/research/benchmark-data.php)
+- [UCI dataset](http://archive.ics.uci.edu/ml/datasets.html?format=&task=cla&att=&area=&numAtt=&numIns=&type=&sort=attup&view=list) described as imalanced (137)
+- Scikit-learn has some [dataset loading utilities](http://scikit-learn.org/stable/datasets/) which also refair to [svmlight-loader](https://github.com/mblondel/svmlight-loader) as example.
+- [SciKit-data](https://github.com/jaberg/skdata) is a package for loading/creating datasets for scikit-learn
+
+### Datasets susceptible to be used in this study
+
+| Dataset    | Size  | imbalance | liu2008 | UCI | stalog | svmlight-loader | skdata |
+|------------|-------|:---------:|:-------:|:---:|:------:|:---------------:|:------:|
+| abalone    | 4177  | 1: 9.7    | x       | x   |        | x               |        |
+| balance    | 625   | 1: 11.8   | x       |     |        |                 |        |
+| car        | 1728  | 1: 3.5    | x       |     |        |                 |        |
+| cmc        | 1473  | 1: 3.4    | x       |     |        |                 |        |
+| haberman   | 306   | 1: 2.8    | x       |     |        |                 |        |
+| housing    | 506   | 1: 3.8    | x       | x   |        | x               |        |
+| ionosphere | 351   | 1: 1.8    | x       | x   |        | x               |        |
+| letter     | 20000 | 1: 24.3   | x       |     |        |                 |        |
+| mf-morph   | 2000  | 1: 9.0    | x       |     |        |                 |        |
+| mf-zernike | 2000  | 1: 9.0    | x       |     |        |                 |        |
+| phoneme    | 5404  | 1: 2.4    | x       |     |        |                 |        |
+| pima       | 768   | 1: 1.9    | x       | x   |        | x               |        |
+| satimage   | 6435  | 1: 9.3    | x       |     | x      | x               |        |
+| vehicle    | 846   | 1: 3.0    | x       |     | x      | x               |        |
+| wdbc       | 569   | 1: 1.7    | x       |     |        |                 |        |
+| wpbc       | 198   | 1: 3.2    | x       |     |        |                 |        |
+
+
 Project folder structure
 ------------------------
 
