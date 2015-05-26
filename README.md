@@ -1,4 +1,4 @@
-Diabetic Rethinopathy (keggle competition)
+Effect of data balance in Machine Learning
 ==========================================
 
 ## Manifesto
@@ -19,7 +19,6 @@ git remote add rr-initUPS git@github.com:massich/rr-init.git
 ```
     project
     |- doc/                  # documentation for the study
-    |  |- literature_review/ # some of the working papers we are using
     |  +- paper/             # manuscript(s), whether generated or not
     |
     |- data                  # raw and primary data, are not changed once created
@@ -62,23 +61,14 @@ Once the virtual environment exist on the system, the command `workon diabetes` 
 **Remember** to keep `requirements.txt` up to date.
 For more details regarding the usage of the virtual enviroment, please look at the [command reference].
 
-Similar Projects
-----------------
-
-- [check project A]
-- [check project B]
-- [check project C]
-- [check project D]
-- [check project E]
-- [check project F]
-
 Todo
 ----
 
-- [ ] Add virtual-env behaviour (at /src)
-- [ ] Add sphinx documentation as project.io website
-- [ ] report how to download the data
-- [ ] Data load example
+- [x] Add virtual-env behaviour (at /src)
+- [?] Add sphinx documentation as project.io website
+- [ ] Add paper
+- [ ] Add code modules
+- [ ]
 
 
 [rr-init repository]: https://github.com/massich/rr-init
@@ -86,10 +76,3 @@ Todo
 [virtual environment post]: http://www.silverwareconsulting.com/index.cfm/2012/7/24/Getting-Started-with-virtualenv-and-virtualenvwrapper-in-Python
 [mozilla marketplace testing]: https://github.com/mozilla/marketplace-tests
 [command reference]:http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html
-
-[check project A]: https://github.com/manasidesh2311/DiabeticRetinopathy
-[check project B]: https://github.com/lantian2012/CS205_Project
-[check project C]: https://github.com/vamshins/ML-Kaggle-Diabetic-Retinopathy/tree/master/DiabeticRetinopathy
-[check project D]: https://github.com/ebenolson/kaggle-drc-viewer
-[check project E]: https://github.com/domspad/kaggleDiabetes
-[check project F]: https://github.com/deworrall92/ROP/tree/master/dev
