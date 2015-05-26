@@ -1,9 +1,13 @@
 Effect of data balance in Machine Learning
 ==========================================
 
-## Manifesto
+#### Manifesto
 
 Because *Human* is **perfectible** and **error-prone**, because *Science* should be **open** and **flow** and because *cogito ergo sum*.
+
+## Research target output
+
+This study targets ACPR2015 to be scientifically disseminated
 
 Project folder structure
 ------------------------
@@ -19,7 +23,8 @@ git remote add rr-initUPS git@github.com:massich/rr-init.git
 ```
     project
     |- doc/                  # documentation for the study
-    |  +- paper/             # manuscript(s), whether generated or not
+    |  |- paper/             # manuscript(s), whether generated or not
+    |  +- source/            # sphinx source
     |
     |- data                  # raw and primary data, are not changed once created
     |  |- raw/               # raw data, will not be altered
@@ -66,7 +71,8 @@ Todo
 
 - [x] Add virtual-env behaviour (at /src)
 - [?] Add sphinx documentation as project.io website
-- [ ] Add paper
+- [x] Add paper submodule
+  - [ ] apply ACPR2015 template
 - [ ] Add code modules
 - [ ]
 
