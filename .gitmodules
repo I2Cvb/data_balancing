@@ -1,0 +1,3 @@
+[submodule "doc/paper"]
+	path = doc/paper
+	url = git@github.com:massich/research_pub.git
