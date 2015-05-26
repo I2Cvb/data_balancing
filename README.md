@@ -39,31 +39,31 @@ This study targets ACPR2015 to be scientifically disseminated
 | wdbc           | 569       | 1: 1.7        | [liu2008]                         |         |            |                     |            |
 | sat            |           | 1:            | [liu2008][guo]                    |         |            |                     |            |
 | wpbc           | 198       | 1: 3.2        | [liu2008]                         |         |            |                     |            |
-| Imbalance      |           | 1:            | [akbani]                          |         |            |                     |            |
-| balance        |           | 1:            | [akbani]                          |         |            |                     |            |
-| chess          |           | 1:            | [akbani]                          |         |            |                     |            |
-| mushroom       |           | 1:            | [akbani]                          |         |            |                     |            |
-| sonar          | 208       | 1:            | [akbani][guo]                     |         |            |                     |            |
-| anneal         |           | 1:            | [akbani]                          |         |            |                     |            |
-| glass          | 214       | 1:            | [akbani][guo]                     |         |            |                     |            |
-| hepatitis      | 155       | 1:            | [akbani][guo]                     |         |            |                     |            |
-| hypothyroid    |           | 1:            | [akbani]                          |         |            |                     |            |
-| segment        | 2310      | 1:            | [akbani][guo]                     |         |            |                     |            |
-| sick           |           | 1:            | [akbani]                          |         |            |                     |            |
-| soybean        |           | 1:            | [akbani]                          |         |            |                     |            |
-| Imbalance      |           | 1:            | [akbani]                          |         |            |                     |            |
-| Ecoli          | 336       | 1:9           | [sobhani]                         |         |            |                     |            |
-| Spectrometer   | 531       | 1:11          | [sobhani]                         |         |            |                     |            |
-| Libras Move    | 360       | 1:14          | [sobhani]                         |         |            |                     |            |
-| Arrhythmia     | 452       | 1:17          | [sobhani]                         |         |            |                     |            |
-| Yeast          | 1484      | 1:28          | [sobhani][guo]                    |         |            |                     |            |
-| monk2          | 169       |               | [guo]                             |         |            |                     |            |
-| breast-w       | 699       |               | [guo]                             |         |            |                     |            |
-| breast-cancer  | 286       |               | [guo]                             |         |            |                     |            |
-| vowel          | 990       |               | [guo]                             |         |            |                     |            |
-| sick           | 3772      |               | [guo]                             |         |            |                     |            |
-| primary-tumor  | 339       |               | [guo]                             |         |            |                     |            |
-| oil            | 937       |               | [guo]                             |         |            |                     |            |
+| Imbalance      |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| balance        |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| chess          |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| mushroom       |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| sonar          | 208       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
+| anneal         |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| glass          | 214       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
+| hepatitis      | 155       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
+| hypothyroid    |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| segment        | 2310      | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
+| sick           |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| soybean        |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| Imbalance      |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
+| Ecoli          | 336       | 1:9           | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
+| Spectrometer   | 531       | 1:11          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
+| Libras Move    | 360       | 1:14          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
+| Arrhythmia     | 452       | 1:17          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
+| Yeast          | 1484      | 1:28          | [sobhani][guo]                    | ??????  | ??????     | ??????              | ??????     |
+| monk2          | 169       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| breast-w       | 699       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| breast-cancer  | 286       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| vowel          | 990       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| sick           | 3772      |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| primary-tumor  | 339       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| oil            | 937       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
 
 
 * sobhani claims that using abalone as ring=19 the imbalance turns 1:130? guo and liu sizes disagree at phoneme and abalone. 
