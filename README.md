@@ -10,9 +10,12 @@ Because *Human* is **perfectible** and **error-prone**, because *Science* should
 This study targets ACPR2015 to be scientifically disseminated
 
 ## Datasets
+Datasets would be taken from [mldata.org]
+[mldata.org]:mldata.org
 
 ### Some thoughts:
 
+- checkout [mldata.org]. I’ve troubles to connect
 - [List of highly imbalanced data sets](http://www.cs.gsu.edu/~zding/research/benchmark-data.php)
 - [UCI dataset](http://archive.ics.uci.edu/ml/datasets.html?format=&task=cla&att=&area=&numAtt=&numIns=&type=&sort=attup&view=list) described as imalanced (137)
 - Scikit-learn has some [dataset loading utilities](http://scikit-learn.org/stable/datasets/) which also refair to [svmlight-loader](https://github.com/mblondel/svmlight-loader) as example.
