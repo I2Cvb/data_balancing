@@ -9,8 +9,8 @@ that takes advantage of :mod:`sklearn.datasets`.
 # from .base import load_iris
 # from .base import load_linnerud
 # from .base import load_boston
-from .base import get_data_home
-from .base import clear_data_home
+from sklearn.datasets.base import get_data_home
+from sklearn.datasets.base import clear_data_home
 # from .base import load_sample_images
 # from .base import load_sample_image
 # from .covtype import fetch_covtype
@@ -21,7 +21,7 @@ from .base import clear_data_home
 # from .lfw import fetch_lfw_people
 # from .twenty_newsgroups import fetch_20newsgroups
 # from .twenty_newsgroups import fetch_20newsgroups_vectorized
-# from .mldata import fetch_mldata, mldata_filename
+from sklearn.datasets.mldata import fetch_mldata, mldata_filename
 # from .samples_generator import make_classification
 # from .samples_generator import make_multilabel_classification
 # from .samples_generator import make_hastie_10_2
@@ -55,7 +55,7 @@ __all__ = ['clear_data_home',
            # 'fetch_20newsgroups_vectorized',
            # 'fetch_lfw_pairs',
            # 'fetch_lfw_people',
-           # 'fetch_mldata',
+           'fetch_mldata',
            # 'fetch_olivetti_faces',
            # 'fetch_species_distributions',
            # 'fetch_california_housing',
@@ -94,5 +94,5 @@ __all__ = ['clear_data_home',
            # 'make_sparse_uncorrelated',
            # 'make_spd_matrix',
            # 'make_swiss_roll',
-           # 'mldata_filename',
+           'mldata_filename',
           ]
