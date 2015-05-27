@@ -20,62 +20,61 @@ This study targets ACPR2015 to be scientifically disseminated
 
 ### Datasets susceptible to be used in this study
 
-| Dataset        | Size      | imbalance     | used at                               | UCI     | stalog     | svmlight-loader     | skdata     |
-| -------------- | --------- | :-----------: | :-------------------------:           | :-----: | :--------: | :-----------------: | :--------: |
-| abalone        | 4177      | 1: 9.7        | [liu2008] [akbani] [sobhani] *[guo] * | x       |            | x                   |            |
-| balance        | 625       | 1: 11.8       | [liu2008] [sobhani]                   |         |            |                     |            |
-| car            | 1728      | 1: 3.5        | [liu2008] [akbani] [sobhani]          |         |            |                     |            |
-| cmc            | 1473      | 1: 3.4        | [liu2008]                             |         |            |                     |            |
-| haberman       | 306       | 1: 2.8        | [liu2008]                             |         |            |                     |            |
-| housing        | 506       | 1: 3.8        | [liu2008]                             | x       |            | x                   |            |
-| ionosphere     | 351       | 1: 1.8        | [liu2008] [akbani] [guo]              | x       |            | x                   |            |
-| letter         | 20000     | 1: 24.3       | [liu2008] [akbani]                    |         |            |                     |            |
-| mf-morph       | 2000      | 1: 9.0        | [liu2008]                             |         |            |                     |            |
-| mf-zernike     | 2000      | 1: 9.0        | [liu2008]                             |         |            |                     |            |
-| phoneme        | 5404      | 1: 2.4        | [liu2008] [guo] [chawla02]            |         |            |                     |            |
-| pima           | 768       | 1: 1.9        | [liu2008] [chawla02]                  | x       |            | x                   |            |
-| satimage       | 6435      | 1: 9.3        | [liu2008] [chawla02]                  |         | x          | x                   |            |
-| vehicle        | 846       | 1: 3.0        | [liu2008] [guo]                       |         | x          | x                   |            |
-| wdbc           | 569       | 1: 1.7        | [liu2008]                             |         |            |                     |            |
-| sat            |           | 1:            | [liu2008] [guo]                       |         |            |                     |            |
-| wpbc           | 198       | 1: 3.2        | [liu2008]                             |         |            |                     |            |
-| Imbalance      |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| balance        |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| chess          |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| mushroom       |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| sonar          | 208       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
-| anneal         |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| glass          | 214       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
-| hepatitis      | 155       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
-| hypothyroid    |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| segment        | 2310      | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
-| sick           |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| soybean        |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| Imbalance      |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
-| Ecoli          | 336       | 1: 9          | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
-| Spectrometer   | 531       | 1: 11         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
-| Libras Move    | 360       | 1: 14         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
-| Arrhythmia     | 452       | 1: 17         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
-| Yeast          | 1484      | 1: 28         | [sobhani] [guo]                       | ??????  | ??????     | ??????              | ??????     |
-| monk2          | 169       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| breast-w       | 699       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| breast-cancer  | 286       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| vowel          | 990       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| sick           | 3772      |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| primary-tumor  | 339       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
-| oil            | 937       |               | [guo] [chawla02]                      | ??????  | ??????     | ??????              | ??????     |
-| adult          | 48842     | 1: 3.2        | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
-| e-state        | 53220     | 1: 7.4        | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
-| forest-cover   | 38501     | 1: 13         | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
-| mammography    | 11183     | 1: 42         | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
-| can            | 443872    | 1: 52.1       | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
-|                |           |               |                                       |         |            |                     |            |
-
+| Dataset        | Size      | imbalance     | UCI     | Stalog     | svmlight-loader     | skdata     | used at                               |
+| :------------- | --------- | :-----------: | :-----: | :--------: | :-----------------: | :--------: | :-------------------------:           |
+|                |           |               |         |            |                     |            |                                       |
+| Abalone        | 4177      | 1: 9.7        | x       |            | x                   |            | [liu2008] [akbani] [sobhani]* [guo]*  |
+| Adult          | 48842     | 1: 3.2        | ------  | ------     | ------              |            | [chawla02]                            |
+| Anneal         |           | 1:            | ------  | ------     | ------              |            | [akbani]                              |
+| Arrhythmia     | 452       | 1: 17         | ------  | ------     | ------              |            | [sobhani]                             |
+| Balance        | 625       | 1: 11.8       |         |            |                     |            | [liu2008] [sobhani] [akbani]          |
+| Breast-cancer  | 286       |               | x?      |            | x?                  |            | [guo]                                 |
+| Breast-w       | 699       |               | ------  | ------     | ------              |            | [guo]                                 |
+| Can            | 443872    | 1: 52.1       | ------  | ------     | ------              |            | [chawla02]                            |
+| Car            | 1728      | 1: 3.5        |         |            |                     |            | [liu2008] [akbani] [sobhani]          |
+| Chess          |           | 1:            | ------  | ------     | ------              |            | [akbani]                              |
+| Cmc            | 1473      | 1: 3.4        |         |            |                     |            | [liu2008]                             |
+| E-state        | 53220     | 1: 7.4        | ------  | ------     | ------              |            | [chawla02]                            |
+| Ecoli          | 336       | 1: 9          | ------  | ------     | ------              |            | [sobhani]                             |
+| Forest-cover   | 38501     | 1: 13         | ------  | ------     | ------              |            | [chawla02]                            |
+| Glass          | 214       | 1:            | ------  | ------     | ------              |            | [akbani] [guo]                        |
+| Haberman       | 306       | 1: 2.8        |         |            |                     |            | [liu2008]                             |
+| Hepatitis      | 155       | 1:            | ------  | ------     | ------              |            | [akbani] [guo]                        |
+| Housing        | 506       | 1: 3.8        | x       |            | x                   |            | [liu2008]                             |
+| Hypothyroid    |           | 1:            | ------  | ------     | ------              |            | [akbani]                              |
+| Imbalance      |           | 1:            | ------  | ------     | ------              |            | [akbani]                              |
+| Ionosphere     | 351       | 1: 1.8        | x       |            | x                   |            | [liu2008] [akbani] [guo]              |
+| Letter         | 20000     | 1: 24.3       |         | x          | x                   |            | [liu2008] [akbani]                    |
+| Libras Move    | 360       | 1: 14         | ------  | ------     | ------              |            | [sobhani]                             |
+| Mammography    | 11183     | 1: 42         | ------  | ------     | ------              |            | [chawla02]                            |
+| Mf-morph       | 2000      | 1: 9.0        |         |            |                     |            | [liu2008]                             |
+| Mf-zernike     | 2000      | 1: 9.0        |         |            |                     |            | [liu2008]                             |
+| Monk2          | 169       |               | ------  | ------     | ------              |            | [guo]                                 |
+| Mushroom       | 8124?     | 1:            | x       |            | x?                  |            | [akbani]                              |
+| Oil            | 937       |               | ------  | ------     | ------              |            | [guo] [chawla02]                      |
+| Phoneme        | 5404      | 1: 2.4        |         |            |                     |            | [liu2008] [guo] [chawla02]            |
+| Pima           | 768       | 1: 1.9        | x       |            | x                   | x          | [liu2008] [chawla02]                  |
+| Primary-tumor  | 339       |               | ------  | ------     | ------              |            | [guo]                                 |
+| Sat            |           | 1:            |         |            |                     |            | [liu2008] [guo]                       |
+| Satimage       | 6435      | 1: 9.3        |         | x          | x                   |            | [liu2008] [chawla02]                  |
+| Segment        | 2310      | 1:            |         | x          | x                   |            | [akbani] [guo]                        |
+| Sick           | 3772      | 1:            | ------  | ------     | ------              |            | [skbani] [guo]                        |
+| Sonar          | 208       | 1:            | x       |            | x                   |            | [akbani] [guo]                        |
+| Soybean        |           | 1:            | ------  | ------     | ------              |            | [akbani]                              |
+| Spectrometer   | 531       | 1: 11         | ------  | ------     | ------              |            | [sobhani]                             |
+| Vehicle        | 846       | 1: 3.0        |         | x          | x                   |            | [liu2008] [guo]                       |
+| Vowel          | 990       |               | ------  | ------     | ------              |            | [guo]                                 |
+| Wdbc           | 569       | 1: 1.7        |         |            |                     |            | [liu2008]                             |
+| Wpbc           | 198       | 1: 3.2        |         |            |                     |            | [liu2008]                             |
+| Yeast          | 1484      | 1: 28         | ------  | ------     | ------              |            | [sobhani] [guo]                       |
 
 * sobhani claims that using abalone as ring=19 the imbalance turns 1:130? 
 * guo and liu sizes disagree at phoneme and abalone. 
 * guo and sobhani yeast size difers
 * car sobhani says 1:25
+* breast-cancer UCI is 683 elements and can be found at svmlitle
+
+
 
 
 [liu2008]:http://cse.seu.edu.cn/people/xyliu/publication/tsmcb09.pdf
