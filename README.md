@@ -20,53 +20,60 @@ This study targets ACPR2015 to be scientifically disseminated
 
 ### Datasets susceptible to be used in this study
 
-| Dataset        | Size      | imbalance     | used at                           | UCI     | stalog     | svmlight-loader     | skdata     |
-| -------------- | --------- | :-----------: | :-------------------------:       | :-----: | :--------: | :-----------------: | :--------: |
-| abalone        | 4177      | 1: 9.7        | [liu2008][akbani][sobhani]*[guo]* | x       |            | x                   |            |
-| balance        | 625       | 1: 11.8       | [liu2008][sobhani]                |         |            |                     |            |
-| car            | 1728      | 1: 3.5        | [liu2008][akbani][sobhani]        |         |            |                     |            |
-| cmc            | 1473      | 1: 3.4        | [liu2008]                         |         |            |                     |            |
-| haberman       | 306       | 1: 2.8        | [liu2008]                         |         |            |                     |            |
-| housing        | 506       | 1: 3.8        | [liu2008]                         | x       |            | x                   |            |
-| ionosphere     | 351       | 1: 1.8        | [liu2008][akbani][guo]            | x       |            | x                   |            |
-| letter         | 20000     | 1: 24.3       | [liu2008][akbani]                 |         |            |                     |            |
-| mf-morph       | 2000      | 1: 9.0        | [liu2008]                         |         |            |                     |            |
-| mf-zernike     | 2000      | 1: 9.0        | [liu2008]                         |         |            |                     |            |
-| phoneme        | 5404      | 1: 2.4        | [liu2008][guo]                    |         |            |                     |            |
-| pima           | 768       | 1: 1.9        | [liu2008]                         | x       |            | x                   |            |
-| satimage       | 6435      | 1: 9.3        | [liu2008]                         |         | x          | x                   |            |
-| vehicle        | 846       | 1: 3.0        | [liu2008][guo]                    |         | x          | x                   |            |
-| wdbc           | 569       | 1: 1.7        | [liu2008]                         |         |            |                     |            |
-| sat            |           | 1:            | [liu2008][guo]                    |         |            |                     |            |
-| wpbc           | 198       | 1: 3.2        | [liu2008]                         |         |            |                     |            |
-| Imbalance      |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| balance        |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| chess          |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| mushroom       |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| sonar          | 208       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
-| anneal         |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| glass          | 214       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
-| hepatitis      | 155       | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
-| hypothyroid    |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| segment        | 2310      | 1:            | [akbani][guo]                     | ??????  | ??????     | ??????              | ??????     |
-| sick           |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| soybean        |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| Imbalance      |           | 1:            | [akbani]                          | ??????  | ??????     | ??????              | ??????     |
-| Ecoli          | 336       | 1:9           | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
-| Spectrometer   | 531       | 1:11          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
-| Libras Move    | 360       | 1:14          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
-| Arrhythmia     | 452       | 1:17          | [sobhani]                         | ??????  | ??????     | ??????              | ??????     |
-| Yeast          | 1484      | 1:28          | [sobhani][guo]                    | ??????  | ??????     | ??????              | ??????     |
-| monk2          | 169       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| breast-w       | 699       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| breast-cancer  | 286       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| vowel          | 990       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| sick           | 3772      |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| primary-tumor  | 339       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
-| oil            | 937       |               | [guo]                             | ??????  | ??????     | ??????              | ??????     |
+| Dataset        | Size      | imbalance     | used at                               | UCI     | stalog     | svmlight-loader     | skdata     |
+| -------------- | --------- | :-----------: | :-------------------------:           | :-----: | :--------: | :-----------------: | :--------: |
+| abalone        | 4177      | 1: 9.7        | [liu2008] [akbani] [sobhani] *[guo] * | x       |            | x                   |            |
+| balance        | 625       | 1: 11.8       | [liu2008] [sobhani]                   |         |            |                     |            |
+| car            | 1728      | 1: 3.5        | [liu2008] [akbani] [sobhani]          |         |            |                     |            |
+| cmc            | 1473      | 1: 3.4        | [liu2008]                             |         |            |                     |            |
+| haberman       | 306       | 1: 2.8        | [liu2008]                             |         |            |                     |            |
+| housing        | 506       | 1: 3.8        | [liu2008]                             | x       |            | x                   |            |
+| ionosphere     | 351       | 1: 1.8        | [liu2008] [akbani] [guo]              | x       |            | x                   |            |
+| letter         | 20000     | 1: 24.3       | [liu2008] [akbani]                    |         |            |                     |            |
+| mf-morph       | 2000      | 1: 9.0        | [liu2008]                             |         |            |                     |            |
+| mf-zernike     | 2000      | 1: 9.0        | [liu2008]                             |         |            |                     |            |
+| phoneme        | 5404      | 1: 2.4        | [liu2008] [guo] [chawla02]            |         |            |                     |            |
+| pima           | 768       | 1: 1.9        | [liu2008] [chawla02]                  | x       |            | x                   |            |
+| satimage       | 6435      | 1: 9.3        | [liu2008] [chawla02]                  |         | x          | x                   |            |
+| vehicle        | 846       | 1: 3.0        | [liu2008] [guo]                       |         | x          | x                   |            |
+| wdbc           | 569       | 1: 1.7        | [liu2008]                             |         |            |                     |            |
+| sat            |           | 1:            | [liu2008] [guo]                       |         |            |                     |            |
+| wpbc           | 198       | 1: 3.2        | [liu2008]                             |         |            |                     |            |
+| Imbalance      |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| balance        |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| chess          |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| mushroom       |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| sonar          | 208       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
+| anneal         |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| glass          | 214       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
+| hepatitis      | 155       | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
+| hypothyroid    |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| segment        | 2310      | 1:            | [akbani] [guo]                        | ??????  | ??????     | ??????              | ??????     |
+| sick           |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| soybean        |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| Imbalance      |           | 1:            | [akbani]                              | ??????  | ??????     | ??????              | ??????     |
+| Ecoli          | 336       | 1: 9          | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
+| Spectrometer   | 531       | 1: 11         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
+| Libras Move    | 360       | 1: 14         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
+| Arrhythmia     | 452       | 1: 17         | [sobhani]                             | ??????  | ??????     | ??????              | ??????     |
+| Yeast          | 1484      | 1: 28         | [sobhani] [guo]                       | ??????  | ??????     | ??????              | ??????     |
+| monk2          | 169       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| breast-w       | 699       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| breast-cancer  | 286       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| vowel          | 990       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| sick           | 3772      |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| primary-tumor  | 339       |               | [guo]                                 | ??????  | ??????     | ??????              | ??????     |
+| oil            | 937       |               | [guo] [chawla02]                      | ??????  | ??????     | ??????              | ??????     |
+| adult          | 48842     | 1: 3.2        | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
+| e-state        | 53220     | 1: 7.4        | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
+| forest-cover   | 38501     | 1: 13         | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
+| mammography    | 11183     | 1: 42         | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
+| can            | 443872    | 1: 52.1       | [chawla02]                            | ??????  | ??????     | ??????              | ??????     |
+|                |           |               |                                       |         |            |                     |            |
 
 
-* sobhani claims that using abalone as ring=19 the imbalance turns 1:130? guo and liu sizes disagree at phoneme and abalone. 
+* sobhani claims that using abalone as ring=19 the imbalance turns 1:130? 
+* guo and liu sizes disagree at phoneme and abalone. 
 * guo and sobhani yeast size difers
 * car sobhani says 1:25
 
@@ -75,6 +82,7 @@ This study targets ACPR2015 to be scientifically disseminated
 [akbani]:http://link.springer.com/chapter/10.1007%2F978-3-540-30115-8_7
 [sobhani]:http://www.di.uniba.it/~ceci/micFiles/NFMCP2014Proceedings/nfmcp2014_submission_6.pdf
 [guo]:https://www.site.uottawa.ca/~hguo028/papers/KDDExplorations2004.pdf
+[chawla02]:https://www.jair.org/media/953/live-953-2037-jair.pdf
 
 Project folder structure
 ------------------------
