@@ -131,15 +131,15 @@ Virtual-environments are not **virtual machines**.
 Virtual-environments are used to avoid library classing between the libraries of a project and those fom the system.
 Find more information in this [virtual environment post] describing how to use virtual environment for a [mozilla marketplace testing].
 
-Use the following to create a `diabetes` environment based on the `./requirements.txt` associated with the source directory `./src`:
+Use the following to create a `data_balancing` environment based on the `./requirements.txt` associated with the source directory `./src`:
 
 ```
-mkvirtualenv diabetes -a src -r ../requirements.txt
+mkvirtualenv data_balancing -a src -r ../requirements.txt
 ```
 
 Notice that `mkvirtualenv` activates such environment.
 The command `deactivate` is used to exit the virtual environment.
-Once the virtual environment exist on the system, the command `workon diabetes` is rather convenient since it jumps into the working directory and activates the virtual enviroment.
+Once the virtual environment exist on the system, the command `workon data_balancing` is rather convenient since it jumps into the working directory and activates the virtual enviroment.
 
 **Remember** to keep `requirements.txt` up to date.
 For more details regarding the usage of the virtual enviroment, please look at the [command reference].
