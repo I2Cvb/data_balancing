@@ -1,2 +1,26 @@
-# This pulls in all the libraries needed to run this diabetic-rethinopaty project
+## This pulls in all the libraries needed to run this diabetic-rethinopaty project
+#
 
+## System stuff
+# ipython
+
+## Code testing and good practices
+# pep
+# mock
+# pytest
+# pytest-cov
+# pytest-timeout
+# reportlab
+Sphinx
+# sphinxcontrib-napoleon
+# sphinxcontrib-plantuml
+
+# Coding usuall libraries
+numpy
+scikit-learn
+matplotlib
+# seaborn
+# pandas
+# scikit-image
+# scikits.optimization
+# scipy
