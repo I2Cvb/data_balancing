@@ -147,12 +147,17 @@ For more details regarding the usage of the virtual enviroment, please look at t
 Todo
 ----
 
+### General
 - [x] Add virtual-env behaviour (at /src)
 - [?] Add sphinx documentation as project.io website
 - [x] Add paper submodule
   - [ ] apply ACPR2015 template
 - [ ] Add code modules
+- [ ] Add code modules
 - [ ]
+
+### Coding
+- [~] data_loading test suit
 
 
 [rr-init repository]: https://github.com/massich/rr-init
