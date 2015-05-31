@@ -21,7 +21,7 @@ from scipy.io import loadmat
 # label = np.zeros((np.ravel(matfile['int1']).shape[0], ), dtype=(int))
 # label[np.nonzero(np.ravel(matfile['int1']) == 19)] = 1
 
-# np.savez('../../data/raw/mldata/uci-20070111-abalone.npz', data=data, label=label)
+# np.savez('../../data/clean/uci-20070111-abalone.npz', data=data, label=label)
 
 # Adult dataset
 
@@ -32,4 +32,4 @@ from scipy.io import loadmat
 # data = input[:, :-1]
 # label = input[:, -1]
 
-# np.savez('../../data/raw/mldata/uci-adult.npz', data=data, label=label)
+# np.savez('../../data/clean/uci-adult.npz', data=data, label=label)
