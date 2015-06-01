@@ -127,13 +127,18 @@ def spectrometer():
     
     np.savez('../../data/clean/uci-spectrometer.npz', data=data, label=label)
 
-if __name__ == "__main__":
-    
-    #abalone_19()
-    #adult()
-    #ecoli()
-    #optical_digits()    
-    #sat_image()
-    #pen_digits()
-    #abalone_7()
-    spectrometer()
+from fetch.coil_2000 import fetch_coil_2000
+
+def convert_coil2000(path):
+    fetch_coil_2000()
+
+def convert(convert_func, out_file_name, force):
+    path = '../data/clean/' + out_file_name
+    if force or not exist(path):
+        convert_func(path)
+
+def main(force_convertion=False):
+    convert(convert_coil2000, 'coil2000.npz', force_convertion)
+
+if __name__ == '__main__':
+    main()
