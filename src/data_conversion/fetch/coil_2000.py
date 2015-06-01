@@ -17,8 +17,8 @@ following real question:
 This dataset contains `Nr NAME Description Domain`
 
 1 MOSTYPE Customer Subtype see L0
-2 MAANTHUI Number of houses 1  10
-3 MGEMOMV Avg size household 1  6
+2 MAANTHUI Number of houses 1 - 10
+3 MGEMOMV Avg size household 1 - 6
 4 MGEMLEEF Avg age see L1
 5 MOSHOOFD Customer main type see L2
 6 MGODRK Roman catholic see L3
@@ -113,7 +113,7 @@ Value Label
 4 Affluent senior apartments
 5 Mixed seniors
 6 Career and childcare
-7 Dinki's (double income no kids)
+7 Dinki-s (double income no kids)
 8 Middle class families
 9 Modern, complete families
 10 Stable family
@@ -142,7 +142,7 @@ Value Label
 33 Lower class large families
 34 Large family, employed child
 35 Village families
-36 Couples with teens 'Married with children'
+36 Couples with teens -Married with children-
 37 Mixed small town dwellers
 38 Traditional families
 39 Large religous families
@@ -191,13 +191,13 @@ L3:
 L4:
 
 0 f 0
-1 f 1  49
-2 f 50  99
-3 f 100  199
-4 f 200  499
-5 f 500  999
-6 f 1000  4999
-7 f 5000  9999
+1 f 1 - 49
+2 f 50 - 99
+3 f 100 - 199
+4 f 200 - 499
+5 f 500 - 999
+6 f 1000 - 4999
+7 f 5000 - 9999
 8 f 10.000 - 19.999
 9 f 20.000 - ?
 
@@ -224,20 +224,18 @@ Also a Leiden Institute of Advanced Computer Science Technical Report 2000-09. J
 # Authors: Joan Massich and Guillaume Lemaitre
 # License: MIT
 
-from io import BytesIO
 from os.path import join, exists
 from os import makedirs
-from sklearn.externals import joblib
 try:
     # Python 2
-    from urllib2 import urlopen
+    from urllib2 import urlretrieve
 except ImportError:
     # Python 3+
-    from urllib.request import urlopen
+    from urllib import urlretrieve
 
 import numpy as np
 
-from .base import get_data_home
+#from .base import get_data_home
 
 DATA_URL_ = ["http://kdd.ics.uci.edu/databases/tic/ticdata2000.txt",
              "http://kdd.ics.uci.edu/databases/tic/ticeval2000.txt"]
@@ -248,7 +246,22 @@ TARGET_FILENAME_ = ["ticdata2000.txt", "ticeval2000.txt"]
 MODULE_DOCS = __doc__
 
 
-def fetch_california_housing(data_home=None, download_if_missing=True):
+def get_data_home(data_home=None):
+    """ Return the path to the experiment's data dir.
+
+    This folder used to avoid repetitive downloads of the dataset
+    is placed at '$PROJECT_DRI/data/raw/'
+
+    If the folder does not already exist, it is automatically created.
+
+    This function is a wrapper of `sklearn.datasets.get_data_home`
+    """
+    PROJECT_DATA_PATH = '../data/raw/' # it assumes that code is executed from $PROJECT/src
+    from sklearn.datasets import get_data_home as gdh
+    return gdh(data_home=PROJECT_DATA_PATH)
+
+
+def fetch_coil_2000(data_home=None, download_if_missing=True):
     """Fetcher for the CoIL 2000 dataset.
 
     Parameters
@@ -263,21 +276,15 @@ def fetch_california_housing(data_home=None, download_if_missing=True):
         instead of trying to download the data from the source site.
 
     """
-    data_home = get_data_home(data_home=data_home)
+    data_home = join(get_data_home(data_home=data_home), 'coil_2000')
     if not exists(data_home):
         makedirs(data_home)
     for data_url, target_filename in zip(DATA_URL_, TARGET_FILENAME_):
-        if not exists(join(data_home, target_filename)):
+	path = join(data_home, target_filename)
+        if not exists(path):
             print('downloading Coil 2000 from %s to %s' % (data_url, data_home))
-            fhandle = urlopen(data_url)
-            buf = BytesIO(fhandle.read())
-            zip_file = ZipFile(buf)
-            try:
-                cadata_fd = zip_file.open('cadata.txt', 'r')
-                cadata = BytesIO(cadata_fd.read())
-                # skip the first 27 lines (documentation)
-                cal_housing = np.loadtxt(cadata, skiprows=27)
-                joblib.dump(cal_housing, join(data_home, TARGET_FILENAME),
-                            compress=6)
-            finally:
-                zip_file.close()
+	    urlretrieve(data_url, path)
+
+
+if __name__ == '__main__':
+    fetch_coil_2000()

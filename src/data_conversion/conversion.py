@@ -35,13 +35,10 @@ from scipy.io import loadmat
 
 # np.savez('../../data/clean/uci-adult.npz', data=data, label=label)
 
+from fetch.coil_2000 import fetch_coil_2000
 
 def convert_coil2000(path):
-    def download_coil2000():
-        if not exist('../data/raw/coil2000/ticdata2000.txt'):
-
-        http://kdd.ics.uci.edu/databases/tic/ticdata2000.txt
-    print 'hi'
+    fetch_coil_2000()
 
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
