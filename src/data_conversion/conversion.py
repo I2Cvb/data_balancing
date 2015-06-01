@@ -12,6 +12,9 @@ from sklearn.preprocessing import Binarizer
 
 from collections import Counter
 
+from fetch.coil_2000 import fetch_coil_2000
+from process.coil_2000 import convert_coil_2000
+
 def abalone_19():
     # Abalone dataset - Convert the ring = 19 to class 1 and the other to class 0
     filename = '../../data/raw/mldata/uci-20070111-abalone.mat'
@@ -132,17 +135,296 @@ def spectrometer():
 
     np.savez('../../data/clean/uci-spectrometer.npz', data=data, label=label)
 
-from fetch.coil_2000 import fetch_coil_2000
-from process.coil_2000 import convert_coil_2000
+def balance():
+    # balance dataset
 
+    filename = '../../data/raw/mldata/balance-scale.data'
+
+    # We are loading only the 7th continous attributes
+    data = np.loadtxt(filename, delimiter= ',', usecols = tuple(range(1, 5)), dtype=float)
+    
+    # Get the label
+    tmp_label = np.loadtxt(filename, delimiter = ',', usecols = (0, ), dtype=str)
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == 'B')] = 1
+        
+    np.savez('../../data/clean/uci-balance.npz', data=data, label=label)
+
+def car_eval_34():
+    # car eval dataset
+
+    filename = '../../data/raw/mldata/car.data'
+    
+    tmp_data = np.loadtxt(filename, delimiter = ',', dtype=str)
+    tmp_label = tmp_data[:, -1]
+    tmp_data_2 = np.zeros((tmp_data.shape), dtype=int)
+
+    # Encode each label with an integer
+    for f_idx in range(tmp_data.shape[1]):
+        le = LabelEncoder()
+        tmp_data_2[:, f_idx] = le.fit_transform(tmp_data[:, f_idx])
+
+    # initialise the data
+    data = np.zeros((tmp_data.shape[0], tmp_data.shape[1] - 1), dtype=float)
+    label = np.zeros((tmp_data.shape[0], ), dtype=int)
+    
+    # Push the data
+    data = tmp_data_2[:, :-1]
+    label[np.nonzero(tmp_label == 'good')] = 1
+    label[np.nonzero(tmp_label == 'v-good')] = 1
+    
+    np.savez('../../data/clean/uci-car-eval-34.npz', data=data, label=label)
+
+def car_eval_4():
+    # car eval dataset
+
+    filename = '../../data/raw/mldata/car.data'
+    
+    tmp_data = np.loadtxt(filename, delimiter = ',', dtype=str)
+    tmp_label = tmp_data[:, -1]
+    tmp_data_2 = np.zeros((tmp_data.shape), dtype=int)
+
+    # Encode each label with an integer
+    for f_idx in range(tmp_data.shape[1]):
+        le = LabelEncoder()
+        tmp_data_2[:, f_idx] = le.fit_transform(tmp_data[:, f_idx])
+
+    # initialise the data
+    data = np.zeros((tmp_data.shape[0], tmp_data.shape[1] - 1), dtype=float)
+    label = np.zeros((tmp_data.shape[0], ), dtype=int)
+    
+    # Push the data
+    data = tmp_data_2[:, :-1]
+    label[np.nonzero(tmp_label == 'v-good')] = 1
+    
+    np.savez('../../data/clean/uci-car-eval-4.npz', data=data, label=label)
+
+def isolet():
+    # isolet dataset
+
+    filename = '../../data/raw/mldata/isolet.data'
+    
+    data = np.loadtxt(filename, delimiter = ',', usecols = tuple(range(617)), dtype=float)
+    tmp_label = np.loadtxt(filename, delimiter = ',', usecols = (617, ), dtype=float)
+
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == 1.)] = 1
+    label[np.nonzero(tmp_label == 2.)] = 1
+    
+    np.savez('../../data/clean/uci-isolet.npz', data=data, label=label)
+
+def us_crime():
+    # US crime dataset
+
+    filename = '../../data/raw/mldata/communities.data'
+
+    # The missing data will be consider as NaN
+    # Only use 122 continuous features
+    tmp_data = np.genfromtxt(filename, delimiter = ',')
+    tmp_data = tmp_data[:, 5:]
+
+    # replace missing value by the mean
+    imp = Imputer(verbose = 1)
+    tmp_data = imp.fit_transform(tmp_data)
+
+    # extract the data to be saved
+    data = tmp_data[:, :-1]
+    bn = Binarizer(threshold=0.65)
+    label = np.ravel(bn.fit_transform(tmp_data[:, -1]))
+
+    np.savez('../../data/clean/uci-us-crime.npz', data=data, label=label)
+
+def yeast():
+    # yeast dataset
+
+    filename = '../../data/raw/mldata/yeast.svm'
+
+    tmp_data, tmp_label = load_svmlight_file(filename, multilabel=True)
+    data = tmp_data.toarray()
+    label = np.zeros(len(tmp_label), dtype=int)
+
+    # Get only the value with label 8.
+    for idx in range(len(tmp_label)):
+        if 8.0 in tmp_label[idx]:
+            label[idx] = 1
+
+    np.savez('../../data/clean/libsvm-yeast.npz', data=data, label=label)
+
+def scene():
+    # scene dataset
+
+    filename = '../../data/raw/mldata/scene.svm'
+
+    tmp_data, tmp_label = load_svmlight_file(filename, multilabel=True)
+    data = tmp_data.toarray()
+    label = np.zeros(len(tmp_label), dtype=int)
+
+    # Get only the value with label 8.
+    for idx in range(len(tmp_label)):
+        if len(tmp_label[idx]) > 1:
+            label[idx] = 1
+
+    np.savez('../../data/clean/libsvm-scene.npz', data=data, label=label)
+
+def movement_libras():
+    # movement libras dataset
+
+    filename = '../../data/raw/mldata/movement_libras.data'
+    
+    data = np.loadtxt(filename, delimiter = ',', usecols = tuple(range(90)), dtype=float)
+    tmp_label = np.loadtxt(filename, delimiter = ',', usecols = (90, ), dtype=float)
+
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == 1.)] = 1
+    
+    np.savez('../../data/clean/uci-movement-libras.npz', data=data, label=label)
+
+def sick():
+    # sick dataset
+
+    filename = '../../data/raw/mldata/sick.data'
+
+    # Read the data for the 26th first dimension
+    tmp_data = np.loadtxt(filename, delimiter = ',', usecols = tuple(range(26)), dtype=str)
+    tmp_data_3 = np.loadtxt(filename, delimiter = ',', usecols = (29, ), dtype=str)
+
+    tmp_data_2 = []
+    tmp_data_4 = []
+    for s_idx in range(tmp_data.shape[0]):
+        if not np.any(tmp_data[s_idx, :] == '?'):
+            tmp_data_2.append(tmp_data[s_idx, :])
+            tmp_data_4.append(tmp_data_3[s_idx])
+
+    tmp_data_2 = np.array(tmp_data_2)
+
+    data = np.zeros(tmp_data_2.shape, dtype=float)
+    data[:, 0] = tmp_data_2[:, 0].astype(float)
+    
+    # encode the category
+    f_idx = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24]
+    for i in f_idx:
+        le = LabelEncoder()
+        data[:, i] = le.fit_transform(tmp_data_2[:, i]).astype(float)
+
+    f_idx = [17, 19, 21, 23]
+    for i in f_idx:
+        data[:, i] = tmp_data_2[:, i].astype(float)
+
+    # Create the label
+    label = np.zeros((len(tmp_data_4), ), dtype=int)
+    for s_idx in range(len(tmp_data_4)):
+        if "sick" in tmp_data_4[s_idx]:
+            label[s_idx] = 1
+
+    np.savez('../../data/clean/uci-sick.npz', data=data, label=label)
+
+def sick():
+    # sick dataset
+
+    filename = '../../data/raw/mldata/sick.data'
+
+    # Read the data for the 26th first dimension
+    tmp_data = np.loadtxt(filename, delimiter = ',', usecols = tuple(range(26)), dtype=str)
+    tmp_data_3 = np.loadtxt(filename, delimiter = ',', usecols = (29, ), dtype=str)
+
+    tmp_data_2 = []
+    tmp_data_4 = []
+    for s_idx in range(tmp_data.shape[0]):
+        if not np.any(tmp_data[s_idx, :] == '?'):
+            tmp_data_2.append(tmp_data[s_idx, :])
+            tmp_data_4.append(tmp_data_3[s_idx])
+
+    tmp_data_2 = np.array(tmp_data_2)
+
+    data = np.zeros(tmp_data_2.shape, dtype=float)
+    data[:, 0] = tmp_data_2[:, 0].astype(float)
+    
+    # encode the category
+    f_idx = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24]
+    for i in f_idx:
+        le = LabelEncoder()
+        data[:, i] = le.fit_transform(tmp_data_2[:, i]).astype(float)
+
+    f_idx = [17, 19, 21, 23]
+    for i in f_idx:
+        data[:, i] = tmp_data_2[:, i].astype(float)
+
+    # Create the label
+    label = np.zeros((len(tmp_data_4), ), dtype=int)
+    for s_idx in range(len(tmp_data_4)):
+        if "sick" in tmp_data_4[s_idx]:
+            label[s_idx] = 1
+
+    np.savez('../../data/clean/uci-sick.npz', data=data, label=label)
+
+def glass():
+    # glass dataset
+
+    filename = '../../data/raw/mldata/glass.data'
+
+    data = np.loadtxt(filename, delimiter=',', usecols = tuple(range(1, 10)), dtype=float)
+    
+    # Get the label
+    tmp_label = np.loadtxt(filename, delimiter=',', usecols = (10, ), dtype=int)
+    count_l = Counter(tmp_label)
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == min(count_l, key=count_l.get))] = 1
+    
+    np.savez('../../data/clean/uci-glass.npz', data=data, label=label)
+
+def ionosphere():
+    # ionosphere dataset
+
+    filename = '../../data/raw/mldata/ionosphere.data'
+
+    data = np.loadtxt(filename, delimiter=',', usecols = tuple(range(0, 34)), dtype=float)
+    
+    # Get the label
+    tmp_label = np.loadtxt(filename, delimiter=',', usecols = (34, ), dtype=str)
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == 'b')] = 1
+    
+    np.savez('../../data/clean/uci-ionosphere.npz', data=data, label=label)
+
+
+def phoneme():
+    # phoneme dataset
+
+    filename = '../../data/raw/mldata/phoneme.dat'
+
+    data = np.loadtxt(filename, usecols = tuple(range(0, 5)), dtype=float)
+    
+    # Get the label
+    label = np.loadtxt(filename, usecols = (5, ), dtype=int)
+        
+    np.savez('../../data/clean/elena-phoneme.npz', data=data, label=label)
 
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
     if force or not exist(path):
         convert_func(path)
 
-def main(force_convertion=False):
+if __name__ == "__main__":
+    
+    abalone_19()
+    adult()
+    ecoli()
+    optical_digits()    
+    sat_image()
+    pen_digits()
+    abalone_7()
+    spectrometer()
+    balance()
+    car_eval_34()
+    car_eval_4()
+    isolet()
+    us_crime()
+    yeast()
+    scene()
+    movement_libras()
+    sick()
+    glass()
+    ionosphere()
+    phoneme()
+    force_convertion=False
     convert(convert_coil2000, 'coil_2000.npz', force_convertion)
-
-if __name__ == '__main__':
-    main()
