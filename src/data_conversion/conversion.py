@@ -1,5 +1,6 @@
 # In order to manipulate the array
 import numpy as np
+from os.path import isfile as exist
 
 # In order to load mat file
 from scipy.io import loadmat
@@ -33,3 +34,22 @@ from scipy.io import loadmat
 # label = input[:, -1]
 
 # np.savez('../../data/clean/uci-adult.npz', data=data, label=label)
+
+
+def convert_coil2000(path):
+    def download_coil2000():
+        if not exist('../data/raw/coil2000/ticdata2000.txt'):
+
+        http://kdd.ics.uci.edu/databases/tic/ticdata2000.txt
+    print 'hi'
+
+def convert(convert_func, out_file_name, force):
+    path = '../data/clean/' + out_file_name
+    if force or not exist(path):
+        convert_func(path)
+
+def main(force_convertion=False):
+    convert(convert_coil2000, 'coil2000.npz', force_convertion)
+
+if __name__ == '__main__':
+    main()
