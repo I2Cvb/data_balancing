@@ -6,6 +6,11 @@ from scipy.io import loadmat
 
 # In order to import the libsvm format dataset
 from sklearn.datasets import load_svmlight_file
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import Imputer
+from sklearn.preprocessing import Binarizer
+
+from collections import Counter
 
 def abalone_19():
     # Abalone dataset - Convert the ring = 19 to class 1 and the other to class 0
