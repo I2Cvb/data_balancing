@@ -237,9 +237,9 @@ import numpy as np
 
 #from .base import get_data_home
 
-DATA_URL_ = ["http://kdd.ics.uci.edu/databases/tic/ticdata2000.txt",
-             "http://kdd.ics.uci.edu/databases/tic/ticeval2000.txt"]
-TARGET_FILENAME_ = ["ticdata2000.txt", "ticeval2000.txt"]
+DATA_URL = "http://kdd.ics.uci.edu/databases/tic/"
+TARGET_FILENAME_ = ["ticdata2000.txt", "ticeval2000.txt", "tictgts2000.txt"]
+
 
 # Grab the module-level docstring to use as a description of the
 # dataset
@@ -279,11 +279,12 @@ def fetch_coil_2000(data_home=None, download_if_missing=True):
     data_home = join(get_data_home(data_home=data_home), 'coil_2000')
     if not exists(data_home):
         makedirs(data_home)
-    for data_url, target_filename in zip(DATA_URL_, TARGET_FILENAME_):
+    for target_filename in TARGET_FILENAME_:
 	path = join(data_home, target_filename)
         if not exists(path):
-            print('downloading Coil 2000 from %s to %s' % (data_url, data_home))
-	    urlretrieve(data_url, path)
+            url = join(DATA_URL, target_filename)
+            print('downloading Coil 2000 from %s to %s' % (url, data_home))
+	    urlretrieve(url, path)
 
 
 if __name__ == '__main__':

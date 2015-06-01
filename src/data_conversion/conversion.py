@@ -50,7 +50,7 @@ def adult():
     # Adult dataset
 
     filename = '../../data/raw/mldata/adult'
-    
+
     tmp_input = np.loadtxt(filename, delimiter = ',', usecols = (0, 2, 4, 10, 11, 12, 14))
 
     data = tmp_input[:, :-1]
@@ -65,34 +65,34 @@ def ecoli():
 
     # We are loading only the 7th continous attributes
     data = np.loadtxt(filename, usecols = (1, 2, 3, 4, 5, 6, 7), dtype=float)
-    
+
     # Get the label
     tmp_label = np.loadtxt(filename, usecols = (8, ), dtype=str)
     label = np.zeros(tmp_label.shape, dtype=int)
     label[np.nonzero(tmp_label == 'imU')] = 1
-    
+
     np.savez('../../data/clean/uci-ecoli.npz', data=data, label=label)
 
 def optical_digits():
     # optical digits dataset
-    
+
     filename = '../../data/raw/mldata/optdigits'
 
     # We are loading only the 7th continous attributes
     data = np.loadtxt(filename, delimiter = ',', usecols = tuple(range(64)), dtype=float)
-    
+
     # Get the label
     tmp_label = np.loadtxt(filename, delimiter = ',', usecols = (64, ), dtype=int)
     label = np.zeros(tmp_label.shape, dtype=int)
     label[np.nonzero(tmp_label == 8)] = 1
-    
+
     np.savez('../../data/clean/uci-optical-digits.npz', data=data, label=label)
 
 def sat_image():
     # sat image dataset
- 
+
     filename = '../../data/raw/mldata/satimage.scale'
- 
+
     tmp_data, tmp_label = load_svmlight_file(filename)
     data = tmp_data.toarray()
     label = np.zeros(tmp_label.shape, dtype=int)
@@ -102,9 +102,9 @@ def sat_image():
 
 def pen_digits():
     # sat image dataset
- 
+
     filename = '../../data/raw/mldata/pendigits'
- 
+
     tmp_data, tmp_label = load_svmlight_file(filename)
     data = tmp_data.toarray()
     label = np.zeros(tmp_label.shape, dtype=int)
@@ -119,18 +119,17 @@ def spectrometer():
 
     # We are loading only the 7th continous attributes
     data = np.loadtxt(filename, usecols = tuple(range(10, 103)), dtype=float)
-    
+
     # Get the label
     tmp_label = np.loadtxt(filename, usecols = (1, ), dtype=int)
     label = np.zeros(tmp_label.shape, dtype=int)
     label[np.nonzero(tmp_label == 44)] = 1
-    
+
     np.savez('../../data/clean/uci-spectrometer.npz', data=data, label=label)
 
 from fetch.coil_2000 import fetch_coil_2000
+from process.coil_2000 import convert_coil_2000
 
-def convert_coil2000(path):
-    fetch_coil_2000()
 
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
@@ -138,7 +137,7 @@ def convert(convert_func, out_file_name, force):
         convert_func(path)
 
 def main(force_convertion=False):
-    convert(convert_coil2000, 'coil2000.npz', force_convertion)
+    convert(convert_coil2000, 'coil_2000.npz', force_convertion)
 
 if __name__ == '__main__':
     main()
