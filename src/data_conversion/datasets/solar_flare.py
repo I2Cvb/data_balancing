@@ -130,7 +130,8 @@ def process_solar_flare(target=None):
     tmp_input = np.append(parse(TARGET_FILENAME_[0]),
                           parse(TARGET_FILENAME_[1]),
                           axis=0)
-    return (tmp_input[:, :-1], tmp_input[:, -1])
+    label = np.array([1 if x==0 else 0 for tmp_input[:,-2]], dtype=int)
+    return (tmp_input[:, :-4], tmp_input[:, -1])
 
 def convert_solar_flare_Mgreatthan0():
     d, l = process_solar_flare(target='M>0')
