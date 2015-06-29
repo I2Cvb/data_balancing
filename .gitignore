@@ -183,11 +183,11 @@ coverage.xml
 # Django stuff:
 *.log
 
-# Sphinx documentation
-docs/_build/
+# # Sphinx documentation
+# docs/_build/
 
-docs/_static
-docs/_templates
+# docs/_static
+# docs/_templates
 
 # PyBuilder
 target/
@@ -199,8 +199,3 @@ target/
 [Ii]nclude
 [Ll]ib
 [Ss]cripts
-||||||| merged common ancestors
-=======
-# emacs backup
-*~
->>>>>>> guilaumeUPS/master

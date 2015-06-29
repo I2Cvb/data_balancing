@@ -1,6 +1,6 @@
-[submodule "doc/paper"]
-	path = doc/paper
-	url = git@github.com:massich/research_pub.git
 [submodule "src/protoclass"]
 	path = src/protoclass
 	url = https://github.com/glemaitre/protoclass.git
+[submodule "doc/acpr-2015-data-balancing"]
+	path = doc/acpr-2015-data-balancing
+	url = https://github.com/I2Cvb/acpr-2015-data-balancing.git
