@@ -26,18 +26,19 @@ from sklearn.datasets import make_classification
 from sklearn.cross_validation import KFold
 from sklearn.preprocessing import MinMaxScaler
 
+from protoclass.tool.dicom_manip import OpenDataLabel
 from protoclass.classification.classification import Classify
 
 # # Get the path to file
-# filename_data = sys.argv[1]
-# print 'Opening the following file: {}'.format(filename_data)
+filename_data = sys.argv[1]
+print 'Opening the following file: {}'.format(filename_data)
 
 # # Read the data
-# data, label = OpenDataLabel(filename_data)
-data, label = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],
-                           n_informative=3, n_redundant=1, flip_y=0,
-                           n_features=20, n_clusters_per_class=1,
-                           n_samples=5000, random_state=10)
+data, label = OpenDataLabel(filename_data)
+# data, label = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],
+#                            n_informative=3, n_redundant=1, flip_y=0,
+#                            n_features=20, n_clusters_per_class=1,
+#                            n_samples=5000, random_state=10)
 
 # normalise the data
 scaler_min_max = MinMaxScaler(feature_range=(-1., 1.), copy=False)
@@ -71,6 +72,7 @@ rocs = []
 pred_labels = []
 # Apply the classification for each fold
 k = 1
+n_jobs = 8
 for training_idx, testing_idx in kf:
     
     # CHECK THAT THE NUMBER IN THE TESTING CAN CHANGE OR NOT 
@@ -88,7 +90,7 @@ for training_idx, testing_idx in kf:
     config_roc = []
     config_pred_label = []
     for c in config:
-        pred_label, roc = Classify(training_data, training_label, testing_data, testing_label, **c)
+        pred_label, roc = Classify(training_data, training_label, testing_data, testing_label, n_jobs=n_jobs, **c)
         config_roc.append(roc)
         config_pred_label.append(pred_label)
 
@@ -108,7 +110,7 @@ rocs = np.swapaxes(rocs, 0, 1)
 pred_labels = np.swapaxes(pred_labels, 0, 1)
 
 # Save the results somewhere
-path_to_save = sys.argv[3]
+path_to_save = sys.argv[2]
 
 if not os.path.exists(path_to_save):
     os.makedirs(path_to_save)

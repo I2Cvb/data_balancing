@@ -23,13 +23,13 @@ data_path=$1
 script_dir=$(pwd)
 
 # Move to the right directory for the processing
-cd "/user1/le2i/gu5306le/Work/data_balancing/src/protoclass"
+#cd "/user1/le2i/gu5306le/Work/data_balancing/src/protoclass"
 
-path_saving="/user1/le2i/gu5306le/Work/data_balancing/results/data"
+path_saving="../results/data"
 
 # Submit a job for each patient
 patient_idx=0
-for patient in $data_path*/; do
+for patient in $data_path*; do
     # Create an automatic script
     script_filename_core='/script_'
     script_filename="$script_dir$script_filename_core$patient_idx"
@@ -38,10 +38,10 @@ for patient in $data_path*/; do
     ### Truncate the file if it is existing
     : > $script_filename
     ### Write the command to execute
-    printf "ipython protoclass/pipeline/feature-classification/classification_imbalanced_study.py \"${patient}\" \"${path_saving}\"" >> $script_filename
+    printf "ipython ../pipeline/feature-classification/classification_imbalanced_study.py \"${patient}\" \"${path_saving}\"" >> $script_filename
     ### Make it executable
     chmod u+x $script_filename
     # Submit the job to the queue
-    # qsub -q batch -pe smp 8 $script_filename
+    qsub -q batch -pe smp 8 $script_filename
     ((patient_idx++))
 done
