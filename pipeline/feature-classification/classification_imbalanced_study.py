@@ -24,6 +24,7 @@ import sys
 # Scikit-learn library
 from sklearn.datasets import make_classification
 from sklearn.cross_validation import KFold
+from sklearn.cross_validation import StratifiedKFold
 from sklearn.preprocessing import MinMaxScaler
 
 from protoclass.tool.dicom_manip import OpenDataLabel
@@ -47,7 +48,9 @@ scaler_min_max.fit_transform(data)
 # Create 10-fold for the cross validation
 n_folds = 10
 n_samples = data.shape[0]
-kf = KFold(n=n_samples, n_folds=n_folds, shuffle=True)
+# With unbalanced data we need to make some stratified k-fold
+#kf = KFold(n=n_samples, n_folds=n_folds)
+kf = StratifiedKFold(label, n_folds=n_folds)
 
 config = [{'classifier_str' : 'random-forest', 'n_estimators' : 10, 'balancing_criterion' : 'random-over-sampling'},
           {'classifier_str' : 'random-forest', 'n_estimators' : 10, 'balancing_criterion' : 'smote', 'kind_smote' : 'regular'},
