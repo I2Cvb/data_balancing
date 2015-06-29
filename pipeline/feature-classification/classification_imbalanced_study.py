@@ -90,6 +90,7 @@ for training_idx, testing_idx in kf:
     config_roc = []
     config_pred_label = []
     for c in config:
+        print c
         pred_label, roc = Classify(training_data, training_label, testing_data, testing_label, n_jobs=n_jobs, **c)
         config_roc.append(roc)
         config_pred_label.append(pred_label)
@@ -115,6 +116,7 @@ path_to_save = sys.argv[2]
 if not os.path.exists(path_to_save):
     os.makedirs(path_to_save)
 
-saving_filename = 'result_' + str(filename_data)
+from os.path import basename
+saving_filename = 'result_' + str(basename(filename_data))
 saving_path = join(path_to_save, saving_filename)
 np.savez(saving_path, pred_labels=pred_labels, rocs=rocs)
