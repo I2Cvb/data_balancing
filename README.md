@@ -7,7 +7,7 @@ Because *Human* is **perfectible** and **error-prone**, because *Science* should
 
 ## Research target output
 
-This study targets ACPR2015 to be scientifically disseminated
+1. ACPR 2015
 
 ## Datasets
 Datasets would be taken from [mldata.org]
@@ -87,9 +87,6 @@ Datasets would be taken from [mldata.org]
 * breast-cancer UCI is 683 elements and can be found at svmlitle
 * `---` is stuff to be checked
 
-
-
-
 [liu2008]:http://cse.seu.edu.cn/people/xyliu/publication/tsmcb09.pdf
 [akbani]:http://link.springer.com/chapter/10.1007%2F978-3-540-30115-8_7
 [sobhani]:http://www.di.uniba.it/~ceci/micFiles/NFMCP2014Proceedings/nfmcp2014_submission_6.pdf
@@ -117,11 +114,17 @@ git remote add rr-initUPS git@github.com:massich/rr-init.git
     |  |- raw/               # raw data, will not be altered
     |  +- clean/             # cleaned data, will not be altered once created
     |
+    |- pipeline/             # The different pipeline used for the study
+    |  +- feature-classification  # pipeline to perform the classification
+    |
     |- results               # all output from workflows and analyses
     |  |- figures/           # graphs, likely designated for manuscript figures
     |  +- pictures/          # diagrams, images, and other non-graph graphics
     |
     |- scratch/              # temporary files that can be safely deleted or lost
+    |
+    |- script/               # scripts used to run on the cluster
+    |
     |- src/                  # any programmatic code
     |
     |- Makefile              # executable Makefile for this study, if applicable
@@ -132,27 +135,6 @@ git remote add rr-initUPS git@github.com:massich/rr-init.git
     |- README.md             # the top level description of content
 ```
 
-### Recomendations
-
-#### Use a virtual environment (Virtualenv + VirtualenvWrapper)
-
-Virtual-environments are not **virtual machines**.
-Virtual-environments are used to avoid library classing between the libraries of a project and those fom the system.
-Find more information in this [virtual environment post] describing how to use virtual environment for a [mozilla marketplace testing].
-
-Use the following to create a `data_balancing` environment based on the `./requirements.txt` associated with the source directory `./src`:
-
-```
-mkvirtualenv data_balancing -a src -r ../requirements.txt
-```
-
-Notice that `mkvirtualenv` activates such environment.
-The command `deactivate` is used to exit the virtual environment.
-Once the virtual environment exist on the system, the command `workon data_balancing` is rather convenient since it jumps into the working directory and activates the virtual enviroment.
-
-**Remember** to keep `requirements.txt` up to date.
-For more details regarding the usage of the virtual enviroment, please look at the [command reference].
-
 Todo
 ----
 
@@ -161,9 +143,6 @@ Todo
 - [?] Add sphinx documentation as project.io website
 - [x] Add paper submodule
   - [ ] apply ACPR2015 template
-- [ ] Add code modules
-- [ ] Add code modules
-- [ ]
 
 ### Coding
 - [~] data_loading test suit
