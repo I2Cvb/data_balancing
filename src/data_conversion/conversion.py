@@ -171,7 +171,7 @@ def car_eval_34():
     # Push the data
     data = tmp_data_2[:, :-1]
     label[np.nonzero(tmp_label == 'good')] = 1
-    label[np.nonzero(tmp_label == 'v-good')] = 1
+    label[np.nonzero(tmp_label == 'vgood')] = 1
     
     np.savez('../../data/clean/uci-car-eval-34.npz', data=data, label=label)
 
@@ -195,7 +195,7 @@ def car_eval_4():
     
     # Push the data
     data = tmp_data_2[:, :-1]
-    label[np.nonzero(tmp_label == 'v-good')] = 1
+    label[np.nonzero(tmp_label == 'vgood')] = 1
     
     np.savez('../../data/clean/uci-car-eval-4.npz', data=data, label=label)
 
@@ -234,7 +234,7 @@ def us_crime():
 
     np.savez('../../data/clean/uci-us-crime.npz', data=data, label=label)
 
-def yeast():
+def yeast_ml8():
     # yeast dataset
 
     filename = '../../data/raw/mldata/yeast.svm'
@@ -248,7 +248,27 @@ def yeast():
         if 8.0 in tmp_label[idx]:
             label[idx] = 1
 
-    np.savez('../../data/clean/libsvm-yeast.npz', data=data, label=label)
+    np.savez('../../data/clean/libsvm-yeast-ml8.npz', data=data, label=label)
+
+def yeast_me2():
+    # yeast dataset
+
+    filename = '../../data/raw/mldata/yeast.data'
+    
+    # read the first column and convert it into float
+    tmp_data = np.atleast_2d(np.loadtxt(filename, usecols=(0,), dtype=str)).T
+    # encode this feature to get a float
+    le = LabelEncoder()
+    tmp_data = np.ravel(le.fit_transform(tmp_data[:, 0]).astype(float))
+    data = np.hstack((np.atleast_2d(tmp_data).T, np.loadtxt(filename, usecols=tuple(range(1, 9)), dtype=float)))
+
+    # read the label as string
+    tmp_label = np.ravel(np.loadtxt(filename, usecols=(9, ), dtype=str))
+    label = np.zeros(tmp_label.shape, dtype=int)
+    # Get only the label equal to ME2
+    label[np.nonzero(tmp_label == 'ME2')] = 1
+
+    np.savez('../../data/clean/uci-yeast-me2.npz', data=data, label=label)
 
 def scene():
     # scene dataset
@@ -399,6 +419,82 @@ def phoneme():
         
     np.savez('../../data/clean/elena-phoneme.npz', data=data, label=label)
 
+def arrhythmia():
+    # arrhythmia dataset
+
+    filename = '../../data/raw/mldata/arrhythmia.data'
+    
+    # The missing data will be consider as NaN
+    tmp_data = np.genfromtxt(filename, delimiter = ',')
+
+    # replace missing value by the mean
+    imp = Imputer(verbose = 1)
+    tmp_data = imp.fit_transform(tmp_data)
+
+    # extract the data to be saved
+    data = tmp_data[:, :-1]
+    label = np.zeros(tmp_data.shape[0], dtype=int)
+    label[np.nonzero(tmp_data[:, -1] == 6)] = 1
+
+    np.savez('../../data/clean/uci-arrhythmia.npz', data=data, label=label)
+
+def solar_flare():
+    # solar dataset
+    
+    filename = '../../data/raw/mldata/flare.data'
+    
+    tmp_data = np.loadtxt(filename, delimiter = ' ', dtype=str)
+    tmp_label = tmp_data[:, -2].astype(int)
+    # Only the first ten columns are attributes
+    tmp_data_2 = np.zeros((tmp_data.shape[0], 10), dtype=int)
+
+    # Encode each label with an integer
+    for f_idx in range(tmp_data_2.shape[1]):
+        le = LabelEncoder()
+        tmp_data_2[:, f_idx] = le.fit_transform(tmp_data[:, f_idx])
+
+    # initialise the data
+    data = np.zeros(tmp_data_2.shape, dtype=float)
+    label = np.zeros(tmp_label.shape, dtype=int)
+            
+    # Push the data
+    data = tmp_data_2[:, :]
+    label[np.nonzero(tmp_label > 0)] = 1
+    
+    np.savez('../../data/clean/uci-solar-flare-m0.npz', data=data, label=label)
+
+def wine_quality_white():
+    # white wine quality dataset
+
+    filename = '../../data/raw/mldata/winequality-white.csv'
+
+    # The data corresponds to the 11 first column of the csv file
+    data = np.loadtxt(filename, usecols=tuple(range(11)), delimiter=';', dtype=float)
+    # Read the label
+    # We need to binarise the label using a threshold at 4
+    bn = Binarizer(threshold=4)
+    label = bn.fit_transform(np.loadtxt(filename, usecols=(11,), delimiter=';', dtype=int))
+    # We need to inverse the label -> 1=0 and 0=1
+    label = np.ravel(np.abs(label - 1))
+    
+    np.savez('../../data/clean/uci-wine-quality-white.npz', data=data, label=label)
+
+def letter_recognition():
+    # letter recognition dataset
+
+    filename = '../../data/raw/mldata/letter-recognition.data'
+
+    # The data to read are from the second to the last 
+    data = np.loadtxt(filename, usecols=tuple(range(1, 17)), delimiter=',', dtype=float)
+
+    # The label is the first column of the data file and need to be converted to integer
+    tmp_label = np.ravel(np.loadtxt(filename, usecols=(0,), delimiter=',', dtype=str))
+    label = np.zeros(tmp_label.shape, dtype=int)
+    # Find only the Z letter
+    label[np.nonzero(tmp_label == 'Z')] = 1
+
+    np.savez('../../data/clean/uci-letter-recognition-z.npz', data=data, label=label)
+
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
     if force or not exist(path):
@@ -419,12 +515,18 @@ if __name__ == "__main__":
     car_eval_4()
     isolet()
     us_crime()
-    yeast()
+    yeast_ml8()
+    yeast_me2()
     scene()
     movement_libras()
     sick()
     glass()
     ionosphere()
     phoneme()
-    force_convertion=False
-    convert(convert_coil2000, 'coil_2000.npz', force_convertion)
+    # force_convertion=False
+    # convert(convert_coil2000, 'coil_2000.npz', force_convertion)
+    arrhythmia()
+    solar_flare()
+    wine_quality_white()
+    letter_recognition()
+    
