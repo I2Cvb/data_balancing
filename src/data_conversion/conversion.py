@@ -495,6 +495,50 @@ def letter_recognition():
 
     np.savez('../../data/clean/uci-letter-recognition-z.npz', data=data, label=label)
 
+def webpage():
+    # webpage dataset
+    
+    filename = '../../data/raw/mldata/w7a'
+
+    tmp_data, tmp_label = load_svmlight_file(filename, multilabel=True)
+    data = tmp_data.toarray()
+    label = np.ravel(np.array(tmp_label, dtype=int))
+
+    # We need to convert the label -1 to 0
+    label[np.nonzero(label == -1)] = 0
+
+    np.savez('../../data/clean/libsvm-webpage-w7a.npz', data=data, label=label)
+
+def ozone():
+    # ozone dataset
+
+    filename = '../../data/raw/mldata/onehr.data'
+    
+    # The missing data will be consider as NaN
+    # The first column is useless
+    tmp_data = np.genfromtxt(filename, delimiter = ',', usecols=tuple(range(1, 74)))
+
+    # replace missing value by the mean
+    imp = Imputer(verbose = 1)
+    tmp_data = imp.fit_transform(tmp_data)
+
+    # Select the first 72 dimensions
+    data = tmp_data[:, :-1].astype(float)
+    label = tmp_data[:, -1].astype(int)
+
+    np.savez('../../data/clean/uci-ozone.npz', data=data, label=label)
+
+def mammography():
+    # mammography dataset
+
+    filename = '../../data/raw/mldata/phpn1jVwe'
+    
+    data = np.loadtxt(filename, usecols=tuple(range(6)), delimiter=',', dtype=float)
+    label = np.loadtxt(filename, usecols=(6, ), delimiter=',', dtype=int)
+    
+    np.savez('../../data/clean/uci-mammography.npz', data=data, label=label)
+
+
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
     if force or not exist(path):
@@ -502,31 +546,33 @@ def convert(convert_func, out_file_name, force):
 
 if __name__ == "__main__":
     
-    abalone_19()
-    adult()
-    ecoli()
-    optical_digits()    
-    sat_image()
-    pen_digits()
-    abalone_7()
-    spectrometer()
-    balance()
-    car_eval_34()
-    car_eval_4()
-    isolet()
-    us_crime()
-    yeast_ml8()
-    yeast_me2()
-    scene()
-    movement_libras()
-    sick()
-    glass()
-    ionosphere()
-    phoneme()
-    # force_convertion=False
-    # convert(convert_coil2000, 'coil_2000.npz', force_convertion)
-    arrhythmia()
-    solar_flare()
-    wine_quality_white()
-    letter_recognition()
-    
+    # abalone_19()
+    # adult()
+    # ecoli()
+    # optical_digits()    
+    # sat_image()
+    # pen_digits()
+    # abalone_7()
+    # spectrometer()
+    # balance()
+    # car_eval_34()
+    # car_eval_4()
+    # isolet()
+    # us_crime()
+    # yeast_ml8()
+    # yeast_me2()
+    # scene()
+    # movement_libras()
+    # sick()
+    # glass()
+    # ionosphere()
+    # phoneme()
+    # # force_convertion=False
+    # # convert(convert_coil2000, 'coil_2000.npz', force_convertion)
+    # arrhythmia()
+    # solar_flare()
+    # wine_quality_white()
+    # letter_recognition()
+    # webpage()
+    # ozone()
+    mammography()
