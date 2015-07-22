@@ -538,6 +538,20 @@ def mammography():
     
     np.savez('../../data/clean/uci-mammography.npz', data=data, label=label)
 
+def convert_mat_to_npz(filename, dir_to_save):
+    # Load the data
+    matfile = loadmat(filename)
+
+    # There is 2 variables of interest: 1. label; 2. mat
+    data = matfile['mat'].astype(float)
+    label = np.ravel(matfile['label']).astype(int)
+
+    # Save the file in the folder indicated
+    # Import the necessary library
+    from os.path import splitext, basename, join
+    # Get only the core of the file and join with the rest
+    filename_npz = join(dir_to_save, splitext(basename(filename))[0] + '.npz')
+    np.savez(filename_npz, data=data, label=label) 
 
 def convert(convert_func, out_file_name, force):
     path = '../data/clean/' + out_file_name
@@ -575,4 +589,21 @@ if __name__ == "__main__":
     # letter_recognition()
     # webpage()
     # ozone()
-    mammography()
+    # mammography()
+
+    # Define the path to get the mat file
+    path_to_mat = "../../data/clean/mat"
+    # Define the path to store the npz file
+    path_to_npz = "../../data/clean/npz"
+
+    # Convert each file from mat to npz
+    # Import the necessary library
+    from os import listdir
+    from os.path import isfile, join
+
+    matfiles = [f for f in listdir(path_to_mat) if isfile(join(path_to_mat, f))]
+
+    # Go through each file
+    for filename_mat in matfiles:
+        #Convert the current file
+        convert_mat_to_npz(join(path_to_mat, filename_mat), path_to_npz)
