@@ -51,7 +51,8 @@ n_samples = data.shape[0]
 # With unbalanced data we need to make some stratified k-fold
 kf = StratifiedKFold(label, n_folds=n_folds)
 
-config = [{'classifier_str' : 'random-forest', 'n_estimators' : 100, 
+config = [{'classifier_str' : 'random-forest', 'n_estimators' : 100},
+          {'classifier_str' : 'random-forest', 'n_estimators' : 100, 
            'balancing_criterion' : 'random-over-sampling'},
           {'classifier_str' : 'random-forest', 'n_estimators' : 100, 
            'balancing_criterion' : 'smote', 'kind_smote' : 'regular'},
