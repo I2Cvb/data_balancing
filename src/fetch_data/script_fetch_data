@@ -1,8 +1,8 @@
 #!/bin/bash                                                                                                           
 
 # Create the necessary directory
-mkdir "../../data/clean/txt"
-mkdir "../../data/clean/mat"
+mkdir -p ../../data/clean/txt
+mkdir -p ../../data/clean/mat
 
 # Move to the directory to download the *.txt files
 cd "../../data/clean/txt"
