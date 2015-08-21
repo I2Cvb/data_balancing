@@ -3,6 +3,7 @@
 # Create the necessary directory
 mkdir -p ../../data/clean/txt
 mkdir -p ../../data/clean/mat
+mkdir -p ../../data/clean/npz
 
 # Move to the directory to download the *.txt files
 cd "../../data/clean/txt"
