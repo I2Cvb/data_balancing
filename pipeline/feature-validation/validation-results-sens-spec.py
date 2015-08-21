@@ -55,7 +55,7 @@ for n_db in range(1, 31):
             sens, spec = LabelsToSensitivitySpecificity(k_gt_label, k_pred_label)
             # Append the results
             sens_by_fold.append(sens)
-            spec_by_fold.apppend(spec)
+            spec_by_fold.append(spec)
 
         sens_by_config.append(np.array(sens_by_fold))
         spec_by_config.append(np.array(spec_by_fold))
