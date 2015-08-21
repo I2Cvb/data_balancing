@@ -1,6 +1,3 @@
-[submodule "src/protoclass"]
-	path = src/protoclass
-	url = https://github.com/glemaitre/protoclass.git
 [submodule "doc/acpr-2015-dermatology"]
 	path = doc/acpr-2015-dermatology
 	url = https://github.com/I2Cvb/acpr-2015-dermatology.git
