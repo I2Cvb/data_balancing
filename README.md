@@ -21,7 +21,7 @@ These packages can be found as submodule in this repository.
 
 ## Dataset
 
-The dataset can be found in the following [link](http://www.cs.gsu.edu/~zding/research/benchmark-data.php).
+The dataset can be found in the following [link](http://grid.cs.gsu.edu/~zding/research/benchmark-data.php).
 In our experiment, refer to the file `data/README.md` in order to fetch the data and be able to reproduce the experiments.
 
 Project folder structure
