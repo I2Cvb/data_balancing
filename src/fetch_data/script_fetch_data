@@ -1,17 +1,21 @@
-#!/bin/bash                                                                                                                            
+#!/bin/bash                                                                                                           
 
-# Move to the directory to download the *.txt files                                                                                    
+# Create the necessary directory
+mkdir "../../data/clean/txt"
+mkdir "../../data/clean/mat"
+
+# Move to the directory to download the *.txt files
 cd "../../data/clean/txt"
 
-# Fetch all the dataset                                                                                                                
+# Fetch all the dataset
 for dataset in {1..30}; do
     wget http://www.cs.gsu.edu/~zding/research/imbalance-data/x${dataset}data.txt
 done
 
-# Move to the directory to download the *.mat files                                                                                    
+# Move to the directory to download the *.mat files
 cd "../mat"
 
-# Fetch all the dataset                                                                                                                
+# Fetch all the dataset
 for dataset in {1..30}; do
     wget http://www.cs.gsu.edu/~zding/research/imbalance-data/x${dataset}data.mat
 done
