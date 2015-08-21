@@ -1,3 +1,6 @@
 [submodule "doc/acpr-2015-dermatology"]
 	path = doc/acpr-2015-dermatology
 	url = https://github.com/I2Cvb/acpr-2015-dermatology.git
+[submodule "third-party/protoclass"]
+	path = third-party/protoclass
+	url = https://github.com/glemaitre/protoclass.git
