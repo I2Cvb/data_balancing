@@ -89,4 +89,6 @@ for n_db in range(1, 31):
     plt.xlim(0, 1)
     plt.ylim(0, 1)
 
-    plt.show()
+    # Save the plot somewhere
+    save_filename = '../../results/figures/resut_x' + str(n_db) + 'data.pdf'
+    plt.savefig(save_filename)
