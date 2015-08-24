@@ -37,6 +37,28 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]    
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
+############################## CREATE ARRAY WITH TYPE OF BALANCING ##############################
+
+bal_arr = ['No balancing',
+           'ROS',
+           'SMOTE-reg',
+           'SMOTE-bord1',
+           'SMOTE-bord2',
+           'SMOTE-SVM',
+           'RUS',
+           'TL',
+           'Clus',
+           'NM1',
+           'NM2',
+           'NM3',
+           'CNN',
+           'OSS',
+           'NCR',
+           'EasyEns',
+           'BalanceCas',
+           'SMOTE+ENN',
+           'SMOTE+TL']
+    
 ############################## LOADING DATA ##############################
 
 for n_db in range(1, 31):
@@ -66,6 +88,7 @@ for n_db in range(1, 31):
     ax = fig.add_subplot(111, aspect='equal')
     # Compute a single sensitivity and specificity using the mean and the standard deviation with 
     #interpolation in the middle
+    ells = []
     for (cof, (sens_arr, spec_arr)) in enumerate(zip(sens_by_config, spec_by_config)):
         
         # Compute the mean and std of sensitivity and specificity
@@ -78,17 +101,26 @@ for n_db in range(1, 31):
         ### Create the ellipse
         ### We should maybe modify the angle depending of the ratio of spec over sens
         ell = Ellipse(xy=(mean_spec, mean_sens), height=std_sens, width=std_spec, angle=0)
-
+        ells.append(ell)
+        
         ### Make the plot
         ax.add_artist(ell)
         ell.set_clip_box(ax.bbox)
         ell.set_alpha(.5)
         ell.set_facecolor(tableau20[cof])
+
+        plt.scatter(mean_spec, mean_sens, facecolor='none', c=tableau20[cof], alpha=1.)
         
     # Set the limit
     plt.xlim(0, 1)
     plt.ylim(0, 1)
 
+    # Put some label
+    plt.xlabel('Specifity')
+    plt.ylabel('Sensitivity')
+
+    lgd = plt.legend(ells, bal_arr, loc='center left', bbox_to_anchor=(1.05, .5), prop={'size':7}) 
+
     # Save the plot somewhere
-    save_filename = '../../results/figures/resut_x' + str(n_db) + 'data.pdf'
-    plt.savefig(save_filename)
+    save_filename = '../../results/figures/resut_scatter_x' + str(n_db) + 'data.pdf'
+    plt.savefig(save_filename, bbox_extra_artists=(lgd,), bbox_inches='tight')

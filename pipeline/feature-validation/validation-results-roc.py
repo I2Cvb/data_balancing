@@ -38,6 +38,29 @@ for i in range(len(tableau20)):
     r, g, b = tableau20[i]    
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
+############################## CREATE ARRAY WITH TYPE OF BALANCING ##############################
+
+bal_arr = ['No balancing',
+           'ROS',
+           'SMOTE-reg',
+           'SMOTE-bord1',
+           'SMOTE-bord2',
+           'SMOTE-SVM',
+           'RUS',
+           'TL',
+           'Clus',
+           'NM1',
+           'NM2',
+           'NM3',
+           'CNN',
+           'OSS',
+           'NCR',
+           'EasyEns',
+           'BalanceCas',
+           'SMOTE+ENN',
+           'SMOTE+TL']
+    
+
 ############################## LOADING DATA ##############################
 
 for n_db in range(1, 31):
@@ -84,15 +107,21 @@ for n_db in range(1, 31):
         std_tpr = np.std(tpr_arr, axis=0)
         fpr = np.linspace(0., 1., 1000, endpoint=True)
         plt.plot(fpr, mean_tpr, lw=2, color=tableau20[cof],
-                 label='AUC={:.2f} +- {:.2f}'.format(auc_mean, auc_std))
+                 label=bal_arr[cof]+' - AUC={:.2f} +- {:.2f}'.format(auc_mean, auc_std))
         #plt.fill_between(fpr, mean_tpr+std_tpr, mean_tpr-std_tpr, facecolor=tableau20[cof], alpha=0.2)
-        plt.legend(loc=4)
+
+    # Plot the legend on the left of the figure
+    lgd = plt.legend(loc='center left', bbox_to_anchor=(1.05, .5), prop={'size':7})
         
     # Set the limit
     plt.xlim(0, 1)
     plt.ylim(0, 1)
 
+    # Put some label
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+
     # Save the plot somewhere
-    save_filename = '../../results/figures/resut_x' + str(n_db) + 'data.pdf'
-    plt.savefig(save_filename)
+    save_filename = '../../results/figures/resut_roc_x' + str(n_db) + 'data.pdf'
+    plt.savefig(save_filename, bbox_extra_artists=(lgd,), bbox_inches='tight')
     
