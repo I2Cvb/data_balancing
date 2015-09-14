@@ -61,9 +61,11 @@ bal_arr = ['No balancing',
     
 ############################## LOADING DATA ##############################
 
-for n_db in range(1, 31):
+s_data = np.array([1,2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30])
 
-    path_to_results = '../../results/data/result_x' + str(n_db) + 'data.npz'
+for n_db in s_data:
+
+    path_to_results = '../../results/data/logistic_regression/result_x' + str(n_db) + 'data.npz'
     file_results = np.load(path_to_results)
 
     # build an roc_auc object for each curve
