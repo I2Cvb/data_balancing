@@ -82,6 +82,10 @@ Once the virtual environment exist on the system, the command `workon data_balan
 **Remember** to keep `requirements.txt` up to date.
 For more details regarding the usage of the virtual enviroment, please look at the [command reference].
 
+[virtual environment post]: http://www.silverwareconsulting.com/index.cfm/2012/7/24/Getting-Started-with-virtualenv-and-virtualenvwrapper-in-Python
+[mozilla marketplace testing]: https://github.com/mozilla/marketplace-tests
+[command reference]:http://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html
+
 Todo
 ----
 
