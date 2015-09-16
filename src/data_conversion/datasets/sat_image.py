@@ -15,5 +15,16 @@ from collections import Counter
 from fetch.coil_2000 import fetch_coil_2000
 from process.coil_2000 import convert_coil_2000
 
-if __name__ == "__main__":
-    print 'this is the conversion.py'
+
+def sat_image():
+    # sat image dataset
+
+    filename = '../../data/raw/mldata/satimage.scale'
+
+    tmp_data, tmp_label = load_svmlight_file(filename)
+    data = tmp_data.toarray()
+    label = np.zeros(tmp_label.shape, dtype=int)
+    label[np.nonzero(tmp_label == 4)] = 1
+
+    np.savez('../../data/clean/uci-sat-image.npz', data=data, label=label)
+

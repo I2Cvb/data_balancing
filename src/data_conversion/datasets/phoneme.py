@@ -15,5 +15,16 @@ from collections import Counter
 from fetch.coil_2000 import fetch_coil_2000
 from process.coil_2000 import convert_coil_2000
 
-if __name__ == "__main__":
-    print 'this is the conversion.py'
+def phoneme():
+    # phoneme dataset
+
+    filename = '../../data/raw/mldata/phoneme.dat'
+
+    data = np.loadtxt(filename, usecols = tuple(range(0, 5)), dtype=float)
+    
+    # Get the label
+    label = np.loadtxt(filename, usecols = (5, ), dtype=int)
+        
+    np.savez('../../data/clean/elena-phoneme.npz', data=data, label=label)
+
+

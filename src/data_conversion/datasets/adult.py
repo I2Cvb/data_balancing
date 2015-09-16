@@ -15,5 +15,14 @@ from collections import Counter
 from fetch.coil_2000 import fetch_coil_2000
 from process.coil_2000 import convert_coil_2000
 
-if __name__ == "__main__":
-    print 'this is the conversion.py'
+def adult():
+    # Adult dataset
+
+    filename = '../../data/raw/mldata/adult'
+
+    tmp_input = np.loadtxt(filename, delimiter = ',', usecols = (0, 2, 4, 10, 11, 12, 14))
+
+    data = tmp_input[:, :-1]
+    label = tmp_input[:, -1].astype(int)
+
+    np.savez('../../data/clean/uci-adult.npz', data=data, label=label)
