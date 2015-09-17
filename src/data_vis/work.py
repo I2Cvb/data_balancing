@@ -66,8 +66,21 @@ def evaluate(pred, gt):
 # assert((evaluate(p,g)==np.array([3,1,2,4])).all)
 # (evaluate(p,g)==np.array([3,1,2,4])).all() # to see something if TRUE, we are fine
 
+####
+
+def confusion_matrix(x):
+    from collections import Counter
+    from itertools import repeat
+    d = Counter(dict(zip(truth.keys(), repeat(0))))
+    d.update(x)
+    assert d.keys()==truth.keys(), "Error while computing the confusion matrix"
+    # return np.array(d.values(), dtype=float)/sum(d.values())
+    return d.values()
 
 #### load the data as xray
+
+def compute_confusion_matrix(d):
+    return np.array([confusion_matrix(x) for x in d.ravel()]).reshape(d.shape)
 
 def get_data_as_xray(fName):
     # some definitions
@@ -77,19 +90,22 @@ def get_data_as_xray(fName):
                         'NM2', 'NM3', 'CNN', 'OSS', 'NCR', 'EasyEns', 'BalanceCas',
                         'SMOTE+ENN', 'SMOTE+TL']
 
-    def get_confusion_matrix_labels(pred, gt):
-        confusion_matrix_labels = [evaluate(p,g) for (p,g)
-                                   in zip(pred.ravel(), gt.ravel())]
-        return np.array(confusion_matrix_labels).reshape(pred.shape)
+    def get_evaluation_labels(pred, gt):
+        evaluation_label = [evaluate(p,g) for (p,g) in zip(pred.ravel(), gt.ravel())]
+        return np.array(evaluation_label).reshape(pred.shape)
 
     def get_data(f):
         d = np.load(os.path.join(data_path, f))
         return [d['gt_labels'], d['pred_labels'],
-                get_confusion_matrix_labels(d['pred_labels'], d['gt_labels'])]
+                get_evaluation_labels(d['pred_labels'], d['gt_labels'])]
 
     def make_xray(d):
-        return xray.DataArray(d, coords=[['gt', 'pred', 'conf_mat'], balancing_method, range(10)],
+        a = xray.DataArray(d, coords=[['gt', 'pred', 'eval'], balancing_method, range(10)],
                               dims=['label', 'balancing', 'crossval_id'])
+        # b = xray.DataArray(compute_confusion_matrix(d[2]), coords=[truth.values(), balancing_method, range(10)],
+        #                       dims=['conf_matrix', 'balancing', 'crossval_id'])
+        # return xray.concat([a,b])
+        return (a,d)
 
     return make_xray(get_data(fName))
 

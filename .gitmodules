@@ -4,3 +4,6 @@
 [submodule "third-party/protoclass"]
 	path = third-party/protoclass
 	url = https://github.com/glemaitre/protoclass.git
+[submodule "third-party/xray"]
+	path = third-party/xray
+	url = https://github.com/xray/xray.git
