@@ -1,9 +1,9 @@
-[submodule "doc/acpr-2015-dermatology"]
-	path = doc/acpr-2015-dermatology
-	url = https://github.com/I2Cvb/acpr-2015-dermatology.git
 [submodule "third-party/protoclass"]
 	path = third-party/protoclass
 	url = https://github.com/glemaitre/protoclass.git
 [submodule "third-party/xray"]
 	path = third-party/xray
 	url = https://github.com/xray/xray.git
+[submodule "doc/BIOIMAGING-2016-dermatology"]
+	path = doc/BIOIMAGING-2016-dermatology
+	url = https://github.com/I2Cvb/BIOIMAGING-2016-dermatology.git
