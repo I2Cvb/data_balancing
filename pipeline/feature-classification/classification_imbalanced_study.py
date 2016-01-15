@@ -36,10 +36,6 @@ print 'Opening the following file: {}'.format(filename_data)
 
 # # Read the data
 data, label = OpenDataLabel(filename_data)
-# data, label = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9],
-#                            n_informative=3, n_redundant=1, flip_y=0,
-#                            n_features=20, n_clusters_per_class=1,
-#                            n_samples=5000, random_state=10)
 
 # normalise the data
 scaler_min_max = MinMaxScaler(feature_range=(-1., 1.), copy=False)
