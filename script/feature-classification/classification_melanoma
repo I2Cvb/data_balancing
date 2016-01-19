@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ipython '../../pipeline/feature-classification/classification_melanoma_imbalanced_study.py' '../../data' '../../results/data/melanoma/random-forest'

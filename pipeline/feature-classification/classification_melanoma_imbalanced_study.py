@@ -32,14 +32,16 @@ from sklearn.preprocessing import MinMaxScaler
 from protoclass.classification.classification import Classify
 
 # Initialization to the data paths 
-dataPath = 'data/'
-path_to_save = 'data/melanoma/random_forest/'
+dataPath = sys.argv[1]
+path_to_save = sys.argv[2]
 
-fread = pd.read_csv(dataPath.__add__('feature.csv'))
+#fread = pd.read_csv(dataPath.__add__('feature.csv'))
+fread = pd.read_csv(join(dataPath, 'feature.csv'))
 FeatureLists = fread.values
 FeatureLists = FeatureLists[:,0]
 
-f= h5py.File(dataPath.__add__('PH2_Train_Test_80_20.mat'), 'r')
+#f= h5py.File(dataPath.__add__('PH2_Train_Test_80_20.mat'), 'r')
+f = h5py.File(join(dataPath, 'PH2_Train_Test_80_20.mat'), 'r')
 #CVIdx = sio.loadmat(datapath.__add__('TrainTestIndex_117_39_80.mat'))
 trainIdx = np.asmatrix(f.get('trainingIdx')) 
 trainIdx = trainIdx.T
@@ -115,8 +117,9 @@ for I in range (0, FeaturesIdx.shape[0]):
     rocs = []
     gt_labels = []
     pred_labels = []
+    pred_probs = []
     # Apply the classification for each fold
-    #n_jobs = 8
+    n_jobs = -5
 
     for CV in range (0, trainIdx.shape[1]):
     	print 'Iteration #{}'.format(CV)
@@ -130,21 +133,25 @@ for I in range (0, FeaturesIdx.shape[0]):
     
     	config_roc = []
     	config_pred_label = []
+        config_pred_prob = []
     	config_gt_label = []
     	for c in config:
             print c
-            pred_label, roc = Classify(train_data, train_label, test_data, test_label, **c)
+            pred_label, pred_prob, roc = Classify(train_data, train_label, test_data, test_label, gs_n_jobs=n_jobs, **c)
             config_roc.append(roc)
             config_pred_label.append(pred_label)
+            config_pred_prob.append(pred_prob)
             config_gt_label.append(test_label)
 
     	rocs.append(config_roc)
     	pred_labels.append(config_pred_label)
+        pred_probs.append(config_pred_prob)
     	gt_labels.append(config_gt_label)
 
     # Convert the data to store to numpy data
     rocs = np.array(rocs)
     pred_labels = np.array(pred_labels)
+    pred_probs = np.array(pred_probs)
     gt_labels = np.array(gt_labels)
 
     # Reshape the array to have the first index corresponding to the
@@ -152,6 +159,7 @@ for I in range (0, FeaturesIdx.shape[0]):
     # and the last index to the data themselve.
     rocs = np.swapaxes(rocs, 0, 1)
     pred_labels = np.swapaxes(pred_labels, 0, 1)
+    pred_probs = np.swapaxes(pred_probs, 0, 1)
     gt_labels = np.swapaxes(gt_labels, 0, 1)
 
     # Save the results somewhere
@@ -161,10 +169,11 @@ for I in range (0, FeaturesIdx.shape[0]):
     from os.path import basename
     saving_filename = 'melanoma_imbalanced_80_20_' + str(ntree) +  '_' + str(I)
     saving_path = join(path_to_save, saving_filename)
-    np.savez(saving_path, gt_labels=gt_labels, pred_labels=pred_labels, rocs=rocs)
+    np.savez(saving_path, gt_labels=gt_labels, pred_labels=pred_labels, pred_probs=pred_probs, rocs=rocs)
     tosave={}
     tosave['rocs'] = rocs
     tosave['pred_labels'] = pred_labels
+    tosave['pred_probs'] = pred_probs
     tosave['gt_labels'] = gt_labels
     saving_path = join(path_to_save, saving_filename)
     from scipy.io import savemat
