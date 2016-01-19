@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ipython '../../pipeline/feature-classification/classification_melanoma_naive_bayes.py' '../../data' '../../results/data/melanoma/naive-bayes'
