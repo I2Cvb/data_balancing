@@ -27,7 +27,7 @@ from sklearn.cross_validation import KFold
 from sklearn.cross_validation import StratifiedKFold
 from sklearn.preprocessing import MinMaxScaler
 
-from protoclass.tool.dicom_manip import OpenDataLabel
+#from protoclass.tool.dicom_manip import OpenDataLabel
 from protoclass.classification.classification import Classify
 
 # # Get the path to file
