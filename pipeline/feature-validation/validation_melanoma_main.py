@@ -34,7 +34,7 @@ from cf_validation import cf_validation
 from protoclass.validation.utility import MakeTable
 
 #fread = pd.read_csv(join(dataPath, 'featureList.csv'))
-savepath = '../../results/data/melanoma/random-forest/'
+savepath = '../../results/data/melanoma/naive-bayes/'
 datapath = '../../data/'
 fread = pd.read_table(join(datapath, 'FeatureList.txt'))
 FeatureLists = fread.values
@@ -61,7 +61,7 @@ std_iba = []
 ### Grouping the measurements for all the features 
 
 for Id in range(0,24): 
-    path_to_result = '../../results/data/melanoma/random-forest/melanoma_imbalanced_80_20_100_' + str(Id) + '.npz'
+    path_to_result = savepath + '/melanoma_imbalanced_80_20_100_' + str(Id) + '.npz'
     
     mean_sens_config, mean_spec_config, mean_prec_config, mean_npv_config, mean_gmean_config, mean_acc_config, mean_f1sc_config, mean_mcc_config, mean_iba_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config, std_iba_config,pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config = cf_validation(path_to_result)
     
@@ -108,13 +108,13 @@ mean_iba = np.array(mean_iba)*100
 #std_f1sc = np.array(std_f1sc)*100
 #std_mcc = np.array(std_mcc)*100
 #std_iba = np.array(std_iba)*100  
-MakeTable ( mean_sens_spec, FeatureLists, savepath, 'sens_spec_random_forest',ext='.tex')
-MakeTable ( mean_prec, FeatureLists, savepath, 'prec_random_forest',ext='.tex')
-MakeTable ( mean_npv, FeatureLists,savepath,'npv_random_forest',ext='.tex')
-MakeTable ( mean_gmean, FeatureLists,savepath,'gmean_random_forest',ext='.tex')
-MakeTable ( mean_f1sc, FeatureLists,savepath, 'f1sc_random_forest',ext='.tex')
-MakeTable ( mean_mcc, FeatureLists,savepath, 'mcc_random_forest',ext='.tex')
-MakeTable ( mean_iba, FeatureLists,savepath, 'iba_random_forest',ext='.tex')
+MakeTable ( mean_sens_spec, FeatureLists, savepath, 'sens_spec_naive_bayes',ext='.tex')
+MakeTable ( mean_prec, FeatureLists, savepath, 'prec_naive_bayes',ext='.tex')
+MakeTable ( mean_npv, FeatureLists,savepath,'npv_naive_bayes',ext='.tex')
+MakeTable ( mean_gmean, FeatureLists,savepath,'gmean_naive_bayes',ext='.tex')
+MakeTable ( mean_f1sc, FeatureLists,savepath, 'f1sc_naive_bayes',ext='.tex')
+MakeTable ( mean_mcc, FeatureLists,savepath, 'mcc_naive_bayes',ext='.tex')
+MakeTable ( mean_iba, FeatureLists,savepath, 'iba_naive_bayes',ext='.tex')
 
 
 
