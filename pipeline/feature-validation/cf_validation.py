@@ -29,7 +29,7 @@ from sklearn.metrics import precision_recall_curve
 from collections import namedtuple
 roc_auc = namedtuple('roc_auc', ['fpr', 'tpr', 'thresh', 'auc'])
 
-def validation_melanoma (path_to_results):
+def cf_validation (path_to_results):
 
     # Initialization to the data paths 
     #path_to_results = sys.argv[1]
@@ -215,22 +215,3 @@ def validation_melanoma (path_to_results):
     return (mean_sens_config, mean_spec_config, mean_prec_config, mean_npv_config, mean_gmean_config, mean_acc_config, mean_f1sc_config, mean_mcc_config,
             mean_iba_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config,
             std_iba_config,pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config)
-            
-            
-            
-def make_tables(filename , data, featurelist, savepath):     
-    filename = savepath + filename + '.txt'
-#    if not os.path.exists(filename):
-#        os.makedirs(filename)
-    
-    fi = open(filename, 'w+')
-    for fId in range(0, data.shape[0]): 
-       line = []
-       line =  featurelist[fId]
-       for vId in range(0,data.shape[1]): 
-           line = line + '&' + str(round(data[fId][vId]))
-       
-       line = line + '\\'+ '\\' + '\n'
-       fi.write(line)       
-    fi.close()
-    return

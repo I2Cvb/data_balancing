@@ -30,11 +30,11 @@ from os.path import join, isdir, isfile
 # sys library
 import sys
 
-from validation_melanoma import validation_melanoma
-from validation_melanoma import make_tables
+from cf_validation import cf_validation
+from protoclass.validation.utility import MakeTable
 
 #fread = pd.read_csv(join(dataPath, 'featureList.csv'))
-savepth = '../../results/data/melanoma/random-forest/'
+savepath = '../../results/data/melanoma/random-forest/'
 datapath = '../../data/'
 fread = pd.read_table(join(datapath, 'FeatureList.txt'))
 FeatureLists = fread.values
@@ -63,7 +63,7 @@ std_iba = []
 for Id in range(0,24): 
     path_to_result = '../../results/data/melanoma/random-forest/melanoma_imbalanced_80_20_100_' + str(Id) + '.npz'
     
-    mean_sens_config, mean_spec_config, mean_prec_config, mean_npv_config, mean_gmean_config, mean_acc_config, mean_f1sc_config, mean_mcc_config, mean_iba_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config, std_iba_config,pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config = validation_melanoma(path_to_result)
+    mean_sens_config, mean_spec_config, mean_prec_config, mean_npv_config, mean_gmean_config, mean_acc_config, mean_f1sc_config, mean_mcc_config, mean_iba_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config, std_iba_config,pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config = cf_validation(path_to_result)
     
     ### Mean values
     mean_sens.append(mean_sens_config)
@@ -108,14 +108,13 @@ mean_iba = np.array(mean_iba)*100
 #std_f1sc = np.array(std_f1sc)*100
 #std_mcc = np.array(std_mcc)*100
 #std_iba = np.array(std_iba)*100  
-
-make_tables ('sens_spec_naive_bayes', mean_sens_spec, FeatureLists, savepath)
-make_tables ('prec_naive_bayes', mean_prec, FeatureLists, savepath)
-make_tables ('npv_naive_bayes', mean_npv, FeatureLists,savepath)
-make_tables ('gmean_naive_bayes', mean_gmean, FeatureLists,savepath)
-make_tables ('f1sc_naive_bayes', mean_f1sc, FeatureLists,savepath)
-make_tables ('mcc_naive_bayes', mean_mcc, FeatureLists,savepath)
-make_tables ('iba_naive_bayes', mean_iba, FeatureLists,savepath)
+MakeTable ( mean_sens_spec, FeatureLists, savepath, 'sens_spec_random_forest',ext='.tex')
+MakeTable ( mean_prec, FeatureLists, savepath, 'prec_random_forest',ext='.tex')
+MakeTable ( mean_npv, FeatureLists,savepath,'npv_random_forest',ext='.tex')
+MakeTable ( mean_gmean, FeatureLists,savepath,'gmean_random_forest',ext='.tex')
+MakeTable ( mean_f1sc, FeatureLists,savepath, 'f1sc_random_forest',ext='.tex')
+MakeTable ( mean_mcc, FeatureLists,savepath, 'mcc_random_forest',ext='.tex')
+MakeTable ( mean_iba, FeatureLists,savepath, 'iba_random_forest',ext='.tex')
 
 
 
