@@ -7,3 +7,6 @@
 [submodule "doc/BIOIMAGING-2016-dermatology"]
 	path = doc/BIOIMAGING-2016-dermatology
 	url = https://github.com/I2Cvb/BIOIMAGING-2016-dermatology.git
+[submodule "doc/journal-melanoma-imbalanced"]
+	path = doc/journal-melanoma-imbalanced
+	url = https://github.com/I2Cvb/journal-melanoma-imbalanced.git
