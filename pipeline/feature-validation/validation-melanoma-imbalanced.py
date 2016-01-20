@@ -64,7 +64,7 @@ bal_arr = ['No balancing',
 ############################## LOADING DATA ##############################
 
 # Load the file of interest
-path_to_results = '../../results/data/melanoma/naive-bayes/melanoma_imbalanced_80_20_100_2.npz'
+path_to_results = '../../results/data/melanoma/random-forest/melanoma_imbalanced_80_20_100_3.npz'
 file_results = np.load(path_to_results)
 
 ############################## ROC ANALYSIS ##############################
