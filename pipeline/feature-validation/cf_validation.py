@@ -22,7 +22,7 @@ import os
 from os.path import join
 
 # Import our metrics
-from protoclass.validation.metric import LabelsToSensitivitySpecificity, LabelsToPrecisionNegativePredictiveValue, LabelsToGeometricMean, LabelsToAccuracy, LabelsToF1score, LabelsToMatthewCorrCoef, LabelsToGeneralizedIndexBalancedAccuracy
+from protoclass.validation.metric import LabelsToSensitivitySpecificity, LabelsToPrecisionNegativePredictiveValue, LabelsToGeometricMean, LabelsToAccuracy, LabelsToF1score, LabelsToMatthewCorrCoef, LabelsToGeneralizedIndexBalancedAccuracy, LabelsToCostValue
 from sklearn.metrics import precision_recall_curve
 
 
@@ -139,7 +139,7 @@ def cf_validation (path_to_results):
     mean_f1sc_config = []
     mean_mcc_config = []
     mean_iba_config = []
-    
+    mean_cost_config = []
     ### all the std metrics for each configuration
     std_sens_config = []
     std_spec_config = []
@@ -150,6 +150,7 @@ def cf_validation (path_to_results):
     std_f1sc_config = []
     std_mcc_config = []
     std_iba_config = []
+    std_cost_config = []
     
     for config_predl, config_predp, config_gt in zip(file_results['pred_labels'], 
                                                      file_results['pred_probs'], 
@@ -164,6 +165,7 @@ def cf_validation (path_to_results):
         cv_f1sc = []
         cv_mcc = []
         cv_iba = []
+	cv_cost =[]
         
         # get the gt and pred for a single cv
         for cv_predl, cv_predp, cv_gt in zip(config_predl, 
@@ -178,7 +180,8 @@ def cf_validation (path_to_results):
             f1sc = LabelsToF1score(cv_gt, cv_predl)
             mcc = LabelsToMatthewCorrCoef(cv_gt, cv_predl)
             iba = LabelsToGeneralizedIndexBalancedAccuracy(cv_gt, cv_predl)
-    
+            cval = LabelsToCostValue(cv_gt, cv_predl)
+
             cv_sens.append(sens)
             cv_spec.append(spec)
             cv_prec.append(prec)
@@ -188,6 +191,7 @@ def cf_validation (path_to_results):
             cv_f1sc.append(f1sc)
             cv_mcc.append(mcc)
             cv_iba.append(iba)
+	    cv_cost.append(cval)
     
         # Compute the mean-std of the different cvs
         ### mean
@@ -200,6 +204,8 @@ def cf_validation (path_to_results):
         mean_f1sc_config.append(np.mean(cv_f1sc))
         mean_mcc_config.append(np.mean(cv_mcc))
         mean_iba_config.append(np.mean(cv_iba))
+	mean_cost_config.append(np.mean(cv_cost))
+
     
         ### std
         std_sens_config.append(np.std(cv_sens))
@@ -211,7 +217,8 @@ def cf_validation (path_to_results):
         std_f1sc_config.append(np.std(cv_f1sc))
         std_mcc_config.append(np.std(cv_mcc))
         std_iba_config.append(np.std(cv_iba))
+        std_cost_config.append(np.std(cv_cost))
     
     return (mean_sens_config, mean_spec_config, mean_prec_config, mean_npv_config, mean_gmean_config, mean_acc_config, mean_f1sc_config, mean_mcc_config,
-            mean_iba_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config,
-            std_iba_config,pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config)
+            mean_iba_config, mean_cost_config, std_sens_config, std_spec_config, std_prec_config, std_npv_config, std_gmean_config, std_acc_config, std_f1sc_config, std_mcc_config,
+            std_iba_config, std_cost_config, pr_by_config, pr_fitted_by_config,roc_by_config,roc_fitted_by_config)
